@@ -3,11 +3,10 @@ import { CardWrapper } from './CardStyled';
 
 export interface CardProps {
   children: ReactNode;
-  backgroundColor: string;
 }
 
-const Card: React.FC<CardProps> = ({ children, backgroundColor }) => (
-  <CardWrapper style={{ backgroundColor }}>{children}</CardWrapper>
+const Card: React.FC<CardProps> = ({ children }) => (
+  <CardWrapper>{children}</CardWrapper>
 );
 
 export default Card;
