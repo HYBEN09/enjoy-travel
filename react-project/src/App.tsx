@@ -1,5 +1,11 @@
+import GlobalStyle from '@/styles/GlobalStyle';
+
 function App() {
-  return <div className="App">App</div>;
+  return (
+    <>
+      <GlobalStyle />
+    </>
+  );
 }
 
 export default App;

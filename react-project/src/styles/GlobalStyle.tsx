@@ -1,11 +1,10 @@
-import { createGlobalStyle } from 'styled-components/macro';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 body {
-  background-color : var(--black);
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   button,
   a {cursor: pointer};
-  color: var(--white);
   }
   body,
   body::before,
@@ -89,15 +88,6 @@ body {
     --purple-700: #422085;
     --purple-800: #2c1559;
     --purple-900: #160b2c;
-    --yellow-100: #fffacc;
-    --yellow-200: #fff599;
-    --yellow-300: #fff066;
-    --yellow-400: #ffeb33;
-    --yellow-500: #ffe600;
-    --yellow-600: #ccb800;
-    --yellow-700: #998a00;
-    --yellow-800: #665c00;
-    --yellow-900: #332e00;
     --red-100: #f9d1cc;
     --red-200: #f3a399;
     --red-300: #ed7566;
@@ -116,15 +106,6 @@ body {
     --colar-700: #95450D;
     --colar-800: #663300;
     --colar-900: #331900;
-    --orange-100: #fdefd8;
-    --orange-200: #fce0b1;
-    --orange-300: #fad08a;
-    --orange-400: #f9c163;
-    --orange-500: #f7b13c;
-    --orange-600: #c68e30;
-    --orange-700: #946a24;
-    --orange-800: #634718;
-    --orange-900: #31230c;
   } 
 `;
 
