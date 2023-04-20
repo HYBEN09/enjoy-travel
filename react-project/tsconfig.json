@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "types": [
+      "styled-components"
+    ],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

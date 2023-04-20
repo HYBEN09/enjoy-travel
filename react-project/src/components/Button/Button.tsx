@@ -3,7 +3,7 @@ import { ButtonWrapper } from './ButtonStyled';
 
 export interface ButtonProps {
   children: ReactNode;
-  backgroundColor: string;
+  backgroundColor?: string;
   onClick?: () => void;
 }
 
