@@ -6,6 +6,8 @@ import { SelectForm } from '../SelectForm/SelectForm';
 import whenOptionsData from '@/data/whenOptionsData.json';
 import { TextAreaForm } from '../TextAreaForm/TextAreaForm';
 import { Button, Form, FormGroup, Label } from './NewMeetupFormStyled';
+import { db } from '@/firebase/firestore';
+import { collection, addDoc } from '@firebase/firestore';
 
 interface MeetupData {
   when: string;
@@ -24,7 +26,7 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
   const descriptionInputRef = useRef<HTMLTextAreaElement>(null);
   const whenInputRef = useRef<HTMLSelectElement>(null);
 
-  function submitHandler(event: FormEvent<HTMLFormElement>) {
+  const submitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const enteredWhen = whenInputRef.current.value;
     const enteredTitle = titleInputRef.current.value;
@@ -38,8 +40,16 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
       description: enteredDescription,
     };
 
+    try {
+      const docRef = await addDoc(collection(db, 'meetups'), meetupData);
+      console.log('Document written with ID: ', docRef.id);
+      props.onAddMeetup(meetupData);
+    } catch (error) {
+      console.error('Error adding document: ', error);
+    }
+
     props.onAddMeetup(meetupData);
-  }
+  };
 
   return (
     <Form onSubmit={submitHandler}>
