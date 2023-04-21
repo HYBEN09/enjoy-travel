@@ -15,32 +15,6 @@ export const Label = styled.label`
   margin-bottom: 0.5rem;
 `;
 
-export const Input = styled.input`
-  display: block;
-  font: inherit;
-  border-radius: 4px;
-  border: 2px solid var(--gray-500);
-  padding: 14px;
-  width: 100%;
-
-  &:focus-visible {
-    outline: 3px solid var(--accent);
-  }
-`;
-
-export const TextArea = styled.textarea`
-  display: block;
-  font: inherit;
-  border-radius: 4px;
-  border: 1px solid var(--gray-500);
-  padding: 0.25rem;
-  width: 100%;
-
-  &:focus-visible {
-    outline: 3px solid var(--accent);
-  }
-`;
-
 export const Button = styled.button`
   font: inherit;
   cursor: pointer;
@@ -60,46 +34,4 @@ export const Button = styled.button`
   &:focus-visible {
     outline: 3px solid var(--blue-900);
   }
-`;
-
-export const Select = styled.select`
-  display: block;
-  font: inherit;
-  border-radius: 4px;
-  border: 1px solid var(--gray-500);
-  padding: 0.25rem;
-  width: 100%;
-
-  &:focus-visible {
-    outline: 3px solid var(--accent);
-  }
-`;
-
-export const DivContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  font-size: 14px;
-  color: var(--gray-600);
-`;
-
-export const ImageInput = styled.input`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-`;
-
-export const ImageContainer = styled.div`
-  margin-top: 30px;
-  padding: 10px;
-  border-radius: 16px;
-`;
-
-export const Image = styled.img`
-  width: 350px;
-  height: 300px;
 `;
