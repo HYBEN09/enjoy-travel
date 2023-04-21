@@ -21,7 +21,7 @@ const slideIn = keyframes`
 export const NavWrapper = styled.div`
   width: 100%;
   height: 100vh;
-  margin-bottom: -930px;
+  margin-bottom: -900px;
 `;
 
 export const Nav = styled.nav`
@@ -106,6 +106,7 @@ export const Menu = styled.div<MenuProps>`
   justify-content: center;
   animation: ${slideIn} 0.3s ease-out;
 `;
+
 export const MenuItem = styled.a`
   display: block;
   padding: 1rem;
@@ -116,5 +117,6 @@ export const MenuItem = styled.a`
 
   &:hover {
     text-decoration: underline;
+    color: var(--secondary);
   }
 `;
