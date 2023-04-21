@@ -1,6 +1,6 @@
 import { ChangeEvent, RefObject, useState } from 'react';
-import imageUpload from '../../../public/assets/imageUpload.svg';
 import { Image, ImageContainer, ImageInput } from './ImageFormStyled';
+import imageUpload from '../../../public/assets/imageUpload.svg';
 
 interface inputProps {
   imageInputRef: RefObject<HTMLInputElement>;

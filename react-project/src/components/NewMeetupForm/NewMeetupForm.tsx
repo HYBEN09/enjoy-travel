@@ -1,18 +1,19 @@
 /* eslint-disable no-unused-vars */
 import { FormEvent, useRef } from 'react';
+import { db } from '@/firebase/firestore';
+import { storage } from '@/firebase/storage';
 import { InputForm } from '../InputForm/InputForm';
 import { ImageForm } from '../ImageForm/ImageForm';
 import { SelectForm } from '../SelectForm/SelectForm';
+import { collection, addDoc } from '@firebase/firestore';
 import whenOptionsData from '@/data/whenOptionsData.json';
 import { TextAreaForm } from '../TextAreaForm/TextAreaForm';
+import { ref, uploadBytes, getDownloadURL } from '@firebase/storage';
 import { Button, Form, FormGroup, Label } from './NewMeetupFormStyled';
-import { db } from '@/firebase/firestore';
-import { collection, addDoc } from '@firebase/firestore';
-
 interface MeetupData {
   when: string;
   title: string;
-  image: string;
+  photoURL: string;
   description: string;
 }
 
@@ -30,25 +31,34 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
     event.preventDefault();
     const enteredWhen = whenInputRef.current.value;
     const enteredTitle = titleInputRef.current.value;
-    const enteredImage = imageInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
+    const file = imageInputRef.current.files && imageInputRef.current.files[0];
 
-    const meetupData: MeetupData = {
-      when: enteredWhen,
-      title: enteredTitle,
-      image: enteredImage,
-      description: enteredDescription,
-    };
+    // 이미지 파일이 선택되었는지 확인
+    if (!file) {
+      return;
+    }
 
+    // 이미지 파일을 Firebase Storage에 업로드
     try {
+      const storageRef = ref(storage, 'meetup-images/' + file.name);
+      await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(storageRef);
+
+      const meetupData: MeetupData = {
+        when: enteredWhen,
+        title: enteredTitle,
+        photoURL: downloadURL,
+        description: enteredDescription,
+      };
+
+      // Firebase Firestore에 미팅 데이터 추가
       const docRef = await addDoc(collection(db, 'meetups'), meetupData);
       console.log('Document written with ID: ', docRef.id);
       props.onAddMeetup(meetupData);
     } catch (error) {
       console.error('Error adding document: ', error);
     }
-
-    props.onAddMeetup(meetupData);
   };
 
   return (
