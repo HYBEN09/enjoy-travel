@@ -6,6 +6,7 @@ import Community from './pages/Community/Community';
 import News from './pages/News/News';
 import SignInForm from './pages/SignIn/SignIn';
 import SignupForm from './pages/Signup/Signup';
+import Detail from './pages/Detail/Detail';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/review" element={<Review />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/community/:meetupId" element={<Detail />} />
           <Route path="/news" element={<News />} />
           <Route path="/signIn" element={<SignInForm />} />
           <Route path="/signUp" element={<SignupForm />} />
