@@ -18,7 +18,7 @@ type SignInFormData = {
   password: string;
 };
 
-const SignInForm = ({ onSubmit }: SignInFormProps) => {
+const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
   const [formData, setFormData] = useState<SignInFormData>({
     email: '',
     password: '',
@@ -29,7 +29,7 @@ const SignInForm = ({ onSubmit }: SignInFormProps) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit(formData);
+    //onSubmit(formData);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +61,7 @@ const SignInForm = ({ onSubmit }: SignInFormProps) => {
           onChange={handleChange}
           ref={passwordRef}
         />
+        <a>Need Help?</a>
         <Button>
           PROCEED
           <IconWrapper>
@@ -71,9 +72,15 @@ const SignInForm = ({ onSubmit }: SignInFormProps) => {
       <SignInFooter>
         <span>Or Log In With</span>
         <SocialLogin>
-          <img src={GoogleLogo} alt="구글" />
-          <img src={FaceBookLogo} alt="페이스북" />
-          <img src={AppleLogo} alt="애플" />
+          <a>
+            <img src={GoogleLogo} alt="구글" />
+          </a>
+          <a>
+            <img src={FaceBookLogo} alt="페이스북" />
+          </a>
+          <a>
+            <img src={AppleLogo} alt="애플" />
+          </a>
         </SocialLogin>
         <span>
           Newble?{' '}
@@ -109,7 +116,6 @@ const SignInWrapper = styled.div`
     padding-left: 25px;
     margin-bottom: 20px;
     border-radius: 100px;
-    border: none;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
     font-size: 1rem;
   }
@@ -124,6 +130,15 @@ const SignInContainer = styled.form`
   padding-bottom: 20px;
   background: var(--white);
   padding: 0 30px;
+
+  a {
+    font-size: 11px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -10px;
+    margin-right: 8px;
+    margin-bottom: 10px;
+  }
 `;
 
 const IconWrapper = styled.span`
@@ -150,7 +165,7 @@ const SocialLogin = styled.div`
 
   img {
     height: 50px;
-    border: 1px solid var(--gray-700);
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
     border-radius: 100%;
     padding: 15px;
   }

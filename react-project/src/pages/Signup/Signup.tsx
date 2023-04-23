@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-unused-vars */
@@ -5,6 +6,7 @@ import Button from '@/components/Button/Button';
 import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { MdArrowForwardIos } from 'react-icons/md';
+import { AiFillCheckCircle } from 'react-icons/ai';
 import GoogleLogo from '/public/GoogleLogo.svg';
 import FaceBookLogo from '/public/FaceBookLogo.svg';
 import AppleLogo from '/public/AppleLogo.svg';
@@ -19,7 +21,7 @@ type SignupFormData = {
   password: string;
 };
 
-const SignupForm = ({ onSubmit }: SignupFormProps) => {
+const SignupForm = (/*{ onSubmit }: SignupFormProps*/) => {
   const [formData, setFormData] = useState<SignupFormData>({
     username: '',
     email: '',
@@ -32,7 +34,7 @@ const SignupForm = ({ onSubmit }: SignupFormProps) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit(formData);
+    //onSubmit(formData);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,11 +42,19 @@ const SignupForm = ({ onSubmit }: SignupFormProps) => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
+  const checkStyle = styled.div`
+    position: absolute;
+    right: 0;
+    top: 0;
+  `;
+
   return (
     <SignupWrapper>
       <SignUpContainer onSubmit={handleSubmit}>
         <h2>SignUp</h2>
+
         <label htmlFor="username">Username</label>
+        <AiFillCheckCircle />
         <input
           type="text"
           name="username"
@@ -83,9 +93,15 @@ const SignupForm = ({ onSubmit }: SignupFormProps) => {
       <SignUpFooter>
         <span>Or Sign Up With</span>
         <SocialLogin>
-          <img src={GoogleLogo} alt="구글" />
-          <img src={FaceBookLogo} alt="페이스북" />
-          <img src={AppleLogo} alt="애플" />
+          <a href="#">
+            <img src={GoogleLogo} alt="구글" />
+          </a>
+          <a href="#">
+            <img src={FaceBookLogo} alt="페이스북" />
+          </a>
+          <a href="#">
+            <img src={AppleLogo} alt="애플" />
+          </a>
         </SocialLogin>
         <span>
           Have an account?{' '}
@@ -119,7 +135,6 @@ const SignupWrapper = styled.div`
     padding-left: 25px;
     margin-bottom: 20px;
     border-radius: 100px;
-    border: none;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
     font-size: 1rem;
   }
@@ -160,7 +175,7 @@ const SocialLogin = styled.div`
 
   img {
     height: 50px;
-    border: 1px solid var(--gray-700);
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
     border-radius: 100%;
     padding: 15px;
   }
