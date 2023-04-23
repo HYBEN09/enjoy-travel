@@ -107,7 +107,7 @@ export const Menu = styled.div<MenuProps>`
   animation: ${slideIn} 0.3s ease-out;
 `;
 
-export const MenuItem = styled.a`
+export const MenuItem = styled.p`
   display: block;
   padding: 1rem;
   color: #fff;

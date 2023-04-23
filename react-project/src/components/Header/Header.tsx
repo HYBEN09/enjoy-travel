@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import {
   BurgerBarBot,
   BurgerBarMid,
@@ -9,6 +10,7 @@ import {
   NavLogo,
   NavWrapper,
 } from './HeaderStyled';
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 
 export const Header: React.FC = () => {
@@ -30,12 +32,24 @@ export const Header: React.FC = () => {
       </Nav>
 
       <Menu visible={isMenuClicked}>
-        <MenuItem href="#">HOME</MenuItem>
-        <MenuItem href="#">REVIEW</MenuItem>
-        <MenuItem href="#">COMMUNITY</MenuItem>
-        <MenuItem href="#">TRAVEL NEWS</MenuItem>
-        <MenuItem href="#">SIGNIN</MenuItem>
-        <MenuItem href="#SIGNUP">SIGNUP</MenuItem>
+        <MenuItem>
+          <Link to="/"> HOME</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/review"> REVIEW</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/community"> COMMUNITY</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/news"> TRAVEL NEWS</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/signin"> SIGNIN</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/signup"> SIGNUP</Link>
+        </MenuItem>
       </Menu>
     </NavWrapper>
   );
