@@ -1,19 +1,17 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-unused-vars */
 import Button from '@/components/Button/Button';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { AiFillCheckCircle } from 'react-icons/ai';
+import { RiErrorWarningLine } from 'react-icons/ri';
 import GoogleLogo from '/public/GoogleLogo.svg';
 import FaceBookLogo from '/public/FaceBookLogo.svg';
 import AppleLogo from '/public/AppleLogo.svg';
-
-type SignupFormProps = {
-  onSubmit: (formData: SignupFormData) => void;
-};
 
 type SignupFormData = {
   username: string;
@@ -21,7 +19,7 @@ type SignupFormData = {
   password: string;
 };
 
-const SignupForm = (/*{ onSubmit }: SignupFormProps*/) => {
+const SignupForm = () => {
   const [formData, setFormData] = useState<SignupFormData>({
     username: '',
     email: '',
@@ -31,56 +29,96 @@ const SignupForm = (/*{ onSubmit }: SignupFormProps*/) => {
   const usernameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const [isValidName, setIsValidName] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidPW, setIsValidPW] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    //onSubmit(formData);
+    if (isValidName && isValidEmail && isValidPW) {
+      console.log(formData);
+    } else {
+      alert('⚠️ 회원가입 양식이 올바르지 않습니다. 다시 작성하세요.');
+    }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    console.log(value);
+
+    if (value.length >= 3 && value.length <= 5) {
+      setIsValidName(true);
+    } else {
+      setIsValidName(false);
+    }
   };
 
-  const checkStyle = styled.div`
-    position: absolute;
-    right: 0;
-    top: 0;
-  `;
+  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    console.log(value);
+
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    setIsValidEmail(emailPattern.test(value) && value.endsWith('.com'));
+  };
+
+  const handleChangePW = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    console.log(value);
+
+    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
+    setIsValidPW(passwordPattern.test(value));
+  };
 
   return (
     <SignupWrapper>
       <SignUpContainer onSubmit={handleSubmit}>
         <h2>SignUp</h2>
 
-        <label htmlFor="username">Username</label>
-        <AiFillCheckCircle />
+        <label htmlFor="username">
+          Username
+          {isValidName ? <CheckStyle /> : <WarningStyle />}
+        </label>
+
         <input
           type="text"
           name="username"
           id="username"
+          placeholder="3글자 이상  ~  5글자 이하로 작성하세요."
           value={formData.username}
-          onChange={handleChange}
+          onChange={handleChangeName}
           ref={usernameRef}
         />
 
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">
+          Email
+          {isValidEmail ? <CheckStyle2 /> : <WarningStyle2 />}
+        </label>
+
         <input
           type="email"
           name="email"
           id="email"
+          placeholder="이메일을 입력하세요. ( ex : travel@naver.com )"
           value={formData.email}
-          onChange={handleChange}
+          onChange={handleChangeEmail}
           ref={emailRef}
         />
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">
+          Password
+          {isValidPW ? <CheckStyle3 /> : <WarningStyle3 />}
+        </label>
+
         <input
           type="password"
           name="password"
           id="password"
+          placeholder="영어+숫자 8자리이상 입력하세요."
           value={formData.password}
-          onChange={handleChange}
+          onChange={handleChangePW}
           ref={passwordRef}
         />
         <Button>
@@ -114,10 +152,59 @@ const SignupForm = (/*{ onSubmit }: SignupFormProps*/) => {
   );
 };
 
+const CheckStyle = styled(AiFillCheckCircle)`
+  position: absolute;
+  right: 50px;
+  top: 46.4%;
+  transform: translateY(-50%);
+  color: green;
+`;
+
+const WarningStyle = styled(RiErrorWarningLine)`
+  position: absolute;
+  right: 50px;
+  top: 46.4%;
+  transform: translateY(-50%);
+  color: red;
+`;
+
+const CheckStyle2 = styled(AiFillCheckCircle)`
+  position: absolute;
+  right: 50px;
+  top: 56.6%;
+  transform: translateY(-50%);
+  color: green;
+`;
+
+const WarningStyle2 = styled(RiErrorWarningLine)`
+  position: absolute;
+  right: 50px;
+  top: 56.6%;
+  transform: translateY(-50%);
+  color: red;
+`;
+
+const CheckStyle3 = styled(AiFillCheckCircle)`
+  position: absolute;
+  right: 50px;
+  top: 66.8%;
+  transform: translateY(-50%);
+  color: green;
+`;
+
+const WarningStyle3 = styled(RiErrorWarningLine)`
+  position: absolute;
+  right: 50px;
+  top: 66.8%;
+  transform: translateY(-50%);
+  color: red;
+`;
+
 const SignupWrapper = styled.div`
   background: url('/public/SignUpBg.png') no-repeat;
   background-size: 100% 270px;
   padding-top: 250px;
+  position: relative;
 
   h2 {
     display: flex;
@@ -137,6 +224,10 @@ const SignupWrapper = styled.div`
     border-radius: 100px;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
     font-size: 1rem;
+  }
+  input::placeholder {
+    color: var(--gray-600);
+    font-size: 0.7rem;
   }
 `;
 
