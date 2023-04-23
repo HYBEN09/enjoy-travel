@@ -4,6 +4,7 @@ import { ButtonWrapper } from './ButtonStyled';
 export interface ButtonProps {
   children: ReactNode;
   backgroundColor?: string;
+  type?: string;
   onClick?: () => void;
 }
 

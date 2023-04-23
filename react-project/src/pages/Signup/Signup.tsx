@@ -4,10 +4,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-unused-vars */
 import Button from '@/components/Button/Button';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { AiFillCheckCircle } from 'react-icons/ai';
+import { AiOutlineEye } from 'react-icons/ai';
+import { AiFillEyeInvisible } from 'react-icons/ai';
 import { RiErrorWarningLine } from 'react-icons/ri';
 import GoogleLogo from '/public/GoogleLogo.svg';
 import FaceBookLogo from '/public/FaceBookLogo.svg';
@@ -32,6 +34,7 @@ const SignupForm = () => {
   const [isValidName, setIsValidName] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPW, setIsValidPW] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -72,6 +75,10 @@ const SignupForm = () => {
     setIsValidPW(passwordPattern.test(value));
   };
 
+  const handleShowPW = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <SignupWrapper>
       <SignUpContainer onSubmit={handleSubmit}>
@@ -90,6 +97,7 @@ const SignupForm = () => {
           value={formData.username}
           onChange={handleChangeName}
           ref={usernameRef}
+          required
         />
 
         <label htmlFor="email">
@@ -105,21 +113,25 @@ const SignupForm = () => {
           value={formData.email}
           onChange={handleChangeEmail}
           ref={emailRef}
+          required
         />
 
         <label htmlFor="password">
           Password
-          {isValidPW ? <CheckStyle3 /> : <WarningStyle3 />}
+          <button type="button" onClick={handleShowPW}>
+            {showPassword ? <ShowingPW /> : <NotShowingPW />}
+          </button>
         </label>
 
         <input
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           name="password"
           id="password"
           placeholder="영어+숫자 8자리이상 입력하세요."
           value={formData.password}
           onChange={handleChangePW}
           ref={passwordRef}
+          required
         />
         <Button>
           PROCEED
@@ -154,7 +166,7 @@ const SignupForm = () => {
 
 const CheckStyle = styled(AiFillCheckCircle)`
   position: absolute;
-  right: 50px;
+  right: 10%;
   top: 46.4%;
   transform: translateY(-50%);
   color: green;
@@ -162,7 +174,7 @@ const CheckStyle = styled(AiFillCheckCircle)`
 
 const WarningStyle = styled(RiErrorWarningLine)`
   position: absolute;
-  right: 50px;
+  right: 10%;
   top: 46.4%;
   transform: translateY(-50%);
   color: red;
@@ -170,7 +182,7 @@ const WarningStyle = styled(RiErrorWarningLine)`
 
 const CheckStyle2 = styled(AiFillCheckCircle)`
   position: absolute;
-  right: 50px;
+  right: 10%;
   top: 56.6%;
   transform: translateY(-50%);
   color: green;
@@ -178,26 +190,28 @@ const CheckStyle2 = styled(AiFillCheckCircle)`
 
 const WarningStyle2 = styled(RiErrorWarningLine)`
   position: absolute;
-  right: 50px;
+  right: 10%;
   top: 56.6%;
   transform: translateY(-50%);
   color: red;
 `;
 
-const CheckStyle3 = styled(AiFillCheckCircle)`
+const ShowingPW = styled(AiOutlineEye)`
   position: absolute;
-  right: 50px;
+  right: 9.7%;
   top: 66.8%;
   transform: translateY(-50%);
-  color: green;
+  font-size: 1.125rem;
+  color: var(--gray-700);
 `;
 
-const WarningStyle3 = styled(RiErrorWarningLine)`
+const NotShowingPW = styled(AiFillEyeInvisible)`
   position: absolute;
-  right: 50px;
+  right: 9.7%;
   top: 66.8%;
   transform: translateY(-50%);
-  color: red;
+  font-size: 1.125rem;
+  color: var(--gray-700);
 `;
 
 const SignupWrapper = styled.div`
