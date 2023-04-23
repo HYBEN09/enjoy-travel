@@ -36,10 +36,7 @@ body {
     background-color: transparent;
     border: 0;
 
-    &:focus {
-      outline: none;
-      box-shadow: none;
-    }
+
   }
 
   a,
