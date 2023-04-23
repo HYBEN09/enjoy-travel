@@ -1,3 +1,4 @@
+import { Header } from '@/components/Header/Header';
 import { NewMeetupForm } from '@/components/NewMeetupForm/NewMeetupForm';
 
 function Review() {
@@ -5,7 +6,12 @@ function Review() {
     console.log(enteredMeetupData);
   }
 
-  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
+  return (
+    <>
+      <Header />
+      <NewMeetupForm onAddMeetup={addMeetupHandler} />
+    </>
+  );
 }
 
 export default Review;
