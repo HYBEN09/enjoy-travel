@@ -1,32 +1,41 @@
 import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
+  display: flex;
   background-color: #ffffff;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  width: 165px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  padding: 10px;
+  width: 360px;
+  max-height: 300px;
   transition: 0.3s;
   animation: ease-in-out;
   margin-bottom: 2rem;
+  margin-right: 10px;
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 `;
 
 export const Image = styled.img`
   overflow: hidden;
-  width: 130px;
+  width: 160px;
   height: 130px;
+  border-radius: 10px;
 `;
 
 export const CardContainer = styled.div`
+  width: 200px;
   margin: 1rem;
 `;
 
-export const CardTitle = styled.div``;
+export const CardTitle = styled.div`
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--gray-300);
+  margin-bottom: 1rem;
+`;
 
 export const CardContent = styled.div``;

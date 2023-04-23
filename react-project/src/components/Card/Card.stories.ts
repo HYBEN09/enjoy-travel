@@ -5,9 +5,6 @@ const meta: Meta<typeof Card> = {
   title: 'Card',
   component: Card,
   tags: ['autodocs'],
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
 };
 
 export default meta;
