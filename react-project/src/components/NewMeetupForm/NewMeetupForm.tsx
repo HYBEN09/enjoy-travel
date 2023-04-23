@@ -55,7 +55,9 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
       // Firebase Firestore에 미팅 데이터 추가
       const docRef = await addDoc(collection(db, 'meetups'), meetupData);
       console.log('Document written with ID: ', docRef.id);
+      alert('리뷰가 생성되었습니다.');
       props.onAddMeetup(meetupData);
+      window.location.reload();
     } catch (error) {
       console.error('Error adding document: ', error);
     }
