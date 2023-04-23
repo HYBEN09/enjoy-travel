@@ -5,8 +5,11 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs } from '@firebase/firestore';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
+import { Header } from '@/components/Header/Header';
+import { useNavigate } from 'react-router-dom';
 function Community() {
   const [meetups, setMeetups] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMeetups = async () => {
@@ -22,15 +25,26 @@ function Community() {
     fetchMeetups();
   }, []);
 
+  const handleCardClick = (meetupId) => {
+    navigate(`/community/:${meetupId}`);
+  };
+
   return (
     <>
+      <Header />
+
       <CommunityWrapper>
+        <h2>여행후기</h2>
+        <CommunityContent>
+          여행을 다녀온 사용자분들의 솔직한 여행 이야기
+        </CommunityContent>
         {meetups.map((meetup) => (
           <Card
             key={uuidv4()}
             imageUrl={meetup.photoURL}
             title={meetup.title}
             children={meetup.description}
+            onClick={() => handleCardClick(meetup.title)}
           />
         ))}
       </CommunityWrapper>
@@ -42,8 +56,17 @@ const CommunityWrapper = styled.div`
   padding-left: 8px;
   margin-left: 8px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   margin-top: 1rem;
+
+  h2 {
+    font-size: 30px;
+    margin: 1rem;
+  }
 `;
 
+const CommunityContent = styled.p`
+  font-weight: 600;
+  margin: 1rem;
+`;
 export default Community;
