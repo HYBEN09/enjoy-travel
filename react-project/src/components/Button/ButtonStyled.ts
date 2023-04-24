@@ -7,6 +7,7 @@ export const ButtonWrapper = styled.button`
   background-color: #007bff;
   color: #fff;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   margin-top: 20px;
 

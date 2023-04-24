@@ -105,7 +105,7 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
         />
         <a>Need Help?</a>
         <Button>
-          PROCEED
+          로그인
           <IconWrapper>
             <MdArrowForwardIos />
           </IconWrapper>

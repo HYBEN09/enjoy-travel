@@ -51,7 +51,7 @@ const SignupForm = () => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     console.log(value);
 
-    if (value.length >= 3 && value.length <= 5) {
+    if (value.length >= 2 && value.length <= 5) {
       setIsValidName(true);
     } else {
       setIsValidName(false);
@@ -94,7 +94,7 @@ const SignupForm = () => {
           type="text"
           name="username"
           id="username"
-          placeholder="3글자 이상  ~  5글자 이하로 작성하세요."
+          placeholder="2글자 이상  ~  5글자 이하로 작성하세요."
           value={formData.username}
           onChange={handleChangeName}
           ref={usernameRef}
@@ -135,7 +135,7 @@ const SignupForm = () => {
           required
         />
         <Button>
-          PROCEED
+          회원가입
           <IconWrapper>
             <MdArrowForwardIos />
           </IconWrapper>
