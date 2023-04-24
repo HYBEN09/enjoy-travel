@@ -14,6 +14,7 @@ import { RiErrorWarningLine } from 'react-icons/ri';
 import GoogleLogo from '/public/GoogleLogo.svg';
 import FaceBookLogo from '/public/FaceBookLogo.svg';
 import AppleLogo from '/public/AppleLogo.svg';
+import { Link } from 'react-router-dom';
 
 type SignupFormData = {
   username: string;
@@ -154,10 +155,10 @@ const SignupForm = () => {
           </a>
         </SocialLogin>
         <span>
-          Have an account?{' '}
-          <a>
-            <b>&nbsp;Log in</b>
-          </a>
+          Have an account?&nbsp;
+          <StyledLink to="/signin">
+            <b>Log in</b>
+          </StyledLink>
         </span>
       </SignUpFooter>
     </SignupWrapper>
@@ -272,6 +273,13 @@ const SignUpFooter = styled.div`
     display: flex;
     justify-content: center;
     padding: 25px 0;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  &:focus,
+  &:hover {
+    text-decoration: underline;
   }
 `;
 

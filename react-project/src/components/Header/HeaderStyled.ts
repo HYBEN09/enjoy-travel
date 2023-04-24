@@ -55,7 +55,7 @@ export const BurgerMenu = styled.div`
 export const BurgerBarTop = styled.div<BurgerBarProps>`
   width: 2.5rem;
   height: 0.4rem;
-  background-color: var(--purple-700);
+  background-color: var(--primary);
   border-radius: 0.4rem;
   transform: ${({ clicked }) =>
     clicked
@@ -69,7 +69,7 @@ export const BurgerBarTop = styled.div<BurgerBarProps>`
 export const BurgerBarMid = styled.div<BurgerBarProps>`
   width: 2.5rem;
   height: 0.4rem;
-  background-color: var(--purple-700);
+  background-color: var(--primary);
   margin-top: 0.1rem;
   border-radius: 0.4rem;
   opacity: ${({ clicked }) => (clicked ? 0 : 1)};
@@ -79,7 +79,7 @@ export const BurgerBarMid = styled.div<BurgerBarProps>`
 export const BurgerBarBot = styled.div<BurgerBarProps>`
   width: 2.5rem;
   height: 0.4rem;
-  background-color: var(--purple-700);
+  background-color: var(--primary);
   margin-top: 0.1rem;
   border-radius: 0.4rem;
   transform: ${({ clicked }) =>

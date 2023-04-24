@@ -12,6 +12,7 @@ import { RiErrorWarningLine } from 'react-icons/ri';
 import GoogleLogo from '/public/GoogleLogo.svg';
 import FaceBookLogo from '/public/FaceBookLogo.svg';
 import AppleLogo from '/public/AppleLogo.svg';
+import { Link } from 'react-router-dom';
 
 type SignInFormProps = {
   onSubmit: (formData: SignInFormData) => void;
@@ -124,10 +125,10 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
           </a>
         </SocialLogin>
         <span>
-          Newble?{' '}
-          <a>
-            <b>&nbsp;Create Account</b>
-          </a>
+          Newble?&nbsp;
+          <StyledLink to="/signup">
+            <b>Create Account</b>
+          </StyledLink>
         </span>
       </SignInFooter>
     </SignInWrapper>
@@ -236,6 +237,13 @@ const SignInFooter = styled.div`
     display: flex;
     justify-content: center;
     padding: 25px 0;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  &:focus,
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
