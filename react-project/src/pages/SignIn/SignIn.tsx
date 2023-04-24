@@ -136,24 +136,24 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
 
 const CheckStyle = styled(AiFillCheckCircle)`
   position: absolute;
-  right: 10%;
-  top: 54.3%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: green;
 `;
 
 const WarningStyle = styled(RiErrorWarningLine)`
   position: absolute;
-  right: 10%;
-  top: 54.3%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: red;
 `;
 
 const ShowingPW = styled(AiOutlineEye)`
   position: absolute;
-  right: 9.7%;
-  top: 66.5%;
+  right: 5%;
+  top: 232%;
   font-size: 1.125rem;
   transform: translateY(-50%);
   color: var(--gray-700);
@@ -161,8 +161,8 @@ const ShowingPW = styled(AiOutlineEye)`
 
 const NotShowingPW = styled(AiFillEyeInvisible)`
   position: absolute;
-  right: 9.7%;
-  top: 66.5%;
+  right: 5%;
+  top: 232%;
   font-size: 1.125rem;
   transform: translateY(-50%);
   color: var(--gray-700);
@@ -182,6 +182,7 @@ const SignInWrapper = styled.div`
   }
 
   label {
+    position: relative;
     margin-bottom: 7px;
     font-size: 15px;
   }

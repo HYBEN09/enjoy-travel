@@ -166,40 +166,40 @@ const SignupForm = () => {
 
 const CheckStyle = styled(AiFillCheckCircle)`
   position: absolute;
-  right: 10%;
-  top: 46.4%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: green;
 `;
 
 const WarningStyle = styled(RiErrorWarningLine)`
   position: absolute;
-  right: 10%;
-  top: 46.4%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: red;
 `;
 
 const CheckStyle2 = styled(AiFillCheckCircle)`
   position: absolute;
-  right: 10%;
-  top: 56.6%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: green;
 `;
 
 const WarningStyle2 = styled(RiErrorWarningLine)`
   position: absolute;
-  right: 10%;
-  top: 56.6%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: red;
 `;
 
 const ShowingPW = styled(AiOutlineEye)`
   position: absolute;
-  right: 9.7%;
-  top: 66.8%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   font-size: 1.125rem;
   color: var(--gray-700);
@@ -207,8 +207,8 @@ const ShowingPW = styled(AiOutlineEye)`
 
 const NotShowingPW = styled(AiFillEyeInvisible)`
   position: absolute;
-  right: 9.7%;
-  top: 66.8%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   font-size: 1.125rem;
   color: var(--gray-700);
@@ -227,6 +227,7 @@ const SignupWrapper = styled.div`
   }
 
   label {
+    position: relative;
     margin-bottom: 7px;
     font-size: 15px;
   }
