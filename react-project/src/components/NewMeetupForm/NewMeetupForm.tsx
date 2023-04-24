@@ -9,7 +9,14 @@ import { collection, addDoc } from '@firebase/firestore';
 import whenOptionsData from '@/data/whenOptionsData.json';
 import { TextAreaForm } from '../TextAreaForm/TextAreaForm';
 import { ref, uploadBytes, getDownloadURL } from '@firebase/storage';
-import { Button, Form, FormGroup, Label } from './NewMeetupFormStyled';
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  ReviewContent,
+  ReviewTitle,
+} from './NewMeetupFormStyled';
 interface MeetupData {
   when: string;
   title: string;
@@ -65,6 +72,9 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
 
   return (
     <Form onSubmit={submitHandler}>
+      <ReviewTitle> 리뷰 작성 </ReviewTitle>
+
+      <ReviewContent> 즐거웠던 경험을 남겨주세요 😊 </ReviewContent>
       <FormGroup>
         <Label htmlFor="when">언제 다녀오셨나요?</Label>
         <SelectForm options={whenOptionsData} whenInputRef={whenInputRef} />

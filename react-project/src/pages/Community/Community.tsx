@@ -62,11 +62,13 @@ const CommunityWrapper = styled.div`
   h2 {
     font-size: 30px;
     margin: 1rem;
+    color: var(--primary);
   }
 `;
 
 const CommunityContent = styled.p`
   font-weight: 600;
   margin: 1rem;
+  color: var(--gray-800);
 `;
 export default Community;

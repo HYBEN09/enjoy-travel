@@ -35,3 +35,15 @@ export const Button = styled.button`
     outline: 3px solid var(--blue-900);
   }
 `;
+
+export const ReviewContent = styled.p`
+  font-weight: 600;
+  font-size: 20px;
+  margin: 1rem;
+  color: var(--gray-800);
+`;
+
+export const ReviewTitle = styled.h2`
+  font-size: 30px;
+  color: var(--primary);
+`;
