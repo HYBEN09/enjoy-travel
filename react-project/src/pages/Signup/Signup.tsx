@@ -199,7 +199,7 @@ const WarningStyle2 = styled(RiErrorWarningLine)`
 
 const ShowingPW = styled(AiOutlineEye)`
   position: absolute;
-  right: 5%;
+  right: 4%;
   top: 232%;
   transform: translateY(-50%);
   font-size: 1.125rem;
@@ -208,7 +208,7 @@ const ShowingPW = styled(AiOutlineEye)`
 
 const NotShowingPW = styled(AiFillEyeInvisible)`
   position: absolute;
-  right: 5%;
+  right: 4%;
   top: 232%;
   transform: translateY(-50%);
   font-size: 1.125rem;
