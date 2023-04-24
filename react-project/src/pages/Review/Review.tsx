@@ -8,7 +8,6 @@ function Review() {
 
   return (
     <>
-      <Header />
       <NewMeetupForm onAddMeetup={addMeetupHandler} />
     </>
   );

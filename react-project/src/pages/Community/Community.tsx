@@ -31,8 +31,6 @@ function Community() {
 
   return (
     <>
-      <Header />
-
       <CommunityWrapper>
         <h2>여행후기</h2>
         <CommunityContent>

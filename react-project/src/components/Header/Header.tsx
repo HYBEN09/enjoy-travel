@@ -12,6 +12,7 @@ import {
 } from './HeaderStyled';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import mainLogo from '/public/logo.png';
 
 export const Header: React.FC = () => {
   const [isMenuClicked, setIsMenuClicked] = useState(false);
@@ -23,7 +24,11 @@ export const Header: React.FC = () => {
   return (
     <NavWrapper>
       <Nav>
-        <NavLogo>Travel</NavLogo>
+        <NavLogo>
+          <a href="#">
+            <img src={mainLogo} alt="구글" />
+          </a>
+        </NavLogo>
         <BurgerMenu onClick={updateMenu}>
           <BurgerBarTop clicked={isMenuClicked} />
           <BurgerBarMid clicked={isMenuClicked} />
