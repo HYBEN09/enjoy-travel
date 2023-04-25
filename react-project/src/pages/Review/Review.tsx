@@ -1,4 +1,3 @@
-import { Header } from '@/components/Header/Header';
 import { NewMeetupForm } from '@/components/NewMeetupForm/NewMeetupForm';
 
 function Review() {

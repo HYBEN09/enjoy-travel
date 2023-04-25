@@ -272,11 +272,13 @@ const SignUpFooter = styled.div`
     font-size: 10px;
     display: flex;
     justify-content: center;
-    padding: 25px 0;
+    padding: 30px 0;
+    font-weight: 600;
   }
 `;
 
 const StyledLink = styled(Link)`
+  color: var(--accent);
   &:focus,
   &:hover {
     text-decoration: underline;

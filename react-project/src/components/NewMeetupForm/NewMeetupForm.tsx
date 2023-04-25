@@ -1,4 +1,12 @@
 /* eslint-disable no-unused-vars */
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  ReviewContent,
+  ReviewTitle,
+} from './NewMeetupFormStyled';
 import { FormEvent, useRef } from 'react';
 import { db } from '@/firebase/firestore';
 import { storage } from '@/firebase/storage';
@@ -9,14 +17,6 @@ import { collection, addDoc } from '@firebase/firestore';
 import whenOptionsData from '@/data/whenOptionsData.json';
 import { TextAreaForm } from '../TextAreaForm/TextAreaForm';
 import { ref, uploadBytes, getDownloadURL } from '@firebase/storage';
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  ReviewContent,
-  ReviewTitle,
-} from './NewMeetupFormStyled';
 interface MeetupData {
   when: string;
   title: string;

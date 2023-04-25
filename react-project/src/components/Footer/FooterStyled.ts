@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FooterWrapper = styled.div`
-  width: 390px;
+  width: 100%;
   height: 80px;
   background: var(--blue-100);
   border-radius: 50px 50px 0 0;

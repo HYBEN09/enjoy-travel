@@ -24,10 +24,7 @@ body {
     max-width: 100%;
     height: auto;
   }
-  video {
-    width: 100%;
-    height: auto;
-  }
+
 
   button,
   input,

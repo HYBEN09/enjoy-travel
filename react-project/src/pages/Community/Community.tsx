@@ -1,12 +1,13 @@
 /* eslint-disable react/no-children-prop */
+import { v4 as uuidv4 } from 'uuid';
+import styled from 'styled-components';
 import Card from '@/components/Card/Card';
 import { db } from '@/firebase/firestore';
 import { useEffect, useState } from 'react';
-import { collection, getDocs } from '@firebase/firestore';
-import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
-import { Header } from '@/components/Header/Header';
 import { useNavigate } from 'react-router-dom';
+import { Footer } from '@/components/Footer/Footer';
+import { collection, getDocs } from '@firebase/firestore';
+
 function Community() {
   const [meetups, setMeetups] = useState([]);
   const navigate = useNavigate();
@@ -46,16 +47,22 @@ function Community() {
           />
         ))}
       </CommunityWrapper>
+
+      <Footer />
     </>
   );
 }
 
 const CommunityWrapper = styled.div`
-  padding-left: 8px;
-  margin-left: 8px;
   display: grid;
   grid-template-columns: 1fr;
-  margin-top: 1rem;
+  padding-left: 3px;
+  padding-right: 5px;
+  margin: 1rem 0 55px 8px;
+
+  @media (min-width: 780px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   h2 {
     font-size: 30px;
