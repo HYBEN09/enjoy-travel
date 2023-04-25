@@ -12,6 +12,7 @@ import { RiErrorWarningLine } from 'react-icons/ri';
 import GoogleLogo from '/public/GoogleLogo.svg';
 import FaceBookLogo from '/public/FaceBookLogo.svg';
 import AppleLogo from '/public/AppleLogo.svg';
+import { Link } from 'react-router-dom';
 
 type SignInFormProps = {
   onSubmit: (formData: SignInFormData) => void;
@@ -104,7 +105,7 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
         />
         <a>Need Help?</a>
         <Button>
-          PROCEED
+          로그인
           <IconWrapper>
             <MdArrowForwardIos />
           </IconWrapper>
@@ -124,10 +125,10 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
           </a>
         </SocialLogin>
         <span>
-          Newble?{' '}
-          <a>
-            <b>&nbsp;Create Account</b>
-          </a>
+          Newble?&nbsp;
+          <StyledLink to="/signup">
+            <b>Create Account</b>
+          </StyledLink>
         </span>
       </SignInFooter>
     </SignInWrapper>
@@ -136,24 +137,24 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
 
 const CheckStyle = styled(AiFillCheckCircle)`
   position: absolute;
-  right: 10%;
-  top: 54.3%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: green;
 `;
 
 const WarningStyle = styled(RiErrorWarningLine)`
   position: absolute;
-  right: 10%;
-  top: 54.3%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: red;
 `;
 
 const ShowingPW = styled(AiOutlineEye)`
   position: absolute;
-  right: 9.7%;
-  top: 66.5%;
+  right: 4%;
+  top: 232%;
   font-size: 1.125rem;
   transform: translateY(-50%);
   color: var(--gray-700);
@@ -161,8 +162,8 @@ const ShowingPW = styled(AiOutlineEye)`
 
 const NotShowingPW = styled(AiFillEyeInvisible)`
   position: absolute;
-  right: 9.7%;
-  top: 66.5%;
+  right: 4%;
+  top: 232%;
   font-size: 1.125rem;
   transform: translateY(-50%);
   color: var(--gray-700);
@@ -182,6 +183,7 @@ const SignInWrapper = styled.div`
   }
 
   label {
+    position: relative;
     margin-bottom: 7px;
     font-size: 15px;
   }
@@ -235,6 +237,13 @@ const SignInFooter = styled.div`
     display: flex;
     justify-content: center;
     padding: 25px 0;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  &:focus,
+  &:hover {
+    text-decoration: underline;
   }
 `;
 

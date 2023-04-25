@@ -20,8 +20,8 @@ const slideIn = keyframes`
 
 export const NavWrapper = styled.div`
   width: 100%;
-  height: 100vh;
-  margin-bottom: -910px;
+  height: 4.8rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 `;
 
 export const Nav = styled.nav`
@@ -36,9 +36,8 @@ export const Nav = styled.nav`
 `;
 
 export const NavLogo = styled.h1`
-  text-align: left;
   margin-right: auto;
-  font-size: 45px;
+  width: 125px;
 `;
 
 // BurgerMenu --------------------------------------------
@@ -50,17 +49,17 @@ export const BurgerMenu = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   cursor: pointer;
-  z-index: 10;
+  z-index: 20;
 `;
 
 export const BurgerBarTop = styled.div<BurgerBarProps>`
   width: 2.5rem;
   height: 0.4rem;
-  background-color: var(--purple-700);
+  background-color: var(--primary);
   border-radius: 0.4rem;
   transform: ${({ clicked }) =>
     clicked
-      ? 'rotate(48deg) translate(-0.1rem, 0.7rem)'
+      ? 'rotate(47deg) translate(-0.15rem, 0.7rem)'
       : 'rotate(0) translate(0)'};
   transition: ${({ clicked }) =>
     clicked ? 'ease-out 0.3s' : 'cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s'};
@@ -70,7 +69,7 @@ export const BurgerBarTop = styled.div<BurgerBarProps>`
 export const BurgerBarMid = styled.div<BurgerBarProps>`
   width: 2.5rem;
   height: 0.4rem;
-  background-color: var(--purple-700);
+  background-color: var(--primary);
   margin-top: 0.1rem;
   border-radius: 0.4rem;
   opacity: ${({ clicked }) => (clicked ? 0 : 1)};
@@ -80,12 +79,12 @@ export const BurgerBarMid = styled.div<BurgerBarProps>`
 export const BurgerBarBot = styled.div<BurgerBarProps>`
   width: 2.5rem;
   height: 0.4rem;
-  background-color: var(--purple-700);
+  background-color: var(--primary);
   margin-top: 0.1rem;
   border-radius: 0.4rem;
   transform: ${({ clicked }) =>
     clicked
-      ? 'rotate(-50deg) translate(0.7em, -1.4em)'
+      ? 'rotate(-47deg) translate(0.6em, -1.4em)'
       : 'rotate(0) translate(0)'};
   transition: ${({ clicked }) =>
     clicked ? 'ease-out 0.3s' : 'cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s'};
@@ -95,7 +94,7 @@ export const BurgerBarBot = styled.div<BurgerBarProps>`
 // SlideMenu --------------------------------------------
 export const Menu = styled.div<MenuProps>`
   position: absolute;
-  width: 80%;
+  width: 50%;
   height: 100vh;
   background-color: var(--blue-200);
   top: 0;
@@ -105,6 +104,7 @@ export const Menu = styled.div<MenuProps>`
   align-items: center;
   justify-content: center;
   animation: ${slideIn} 0.3s ease-out;
+  z-index: 10;
 `;
 
 export const MenuItem = styled.p`

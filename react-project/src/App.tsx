@@ -7,12 +7,14 @@ import News from './pages/News/News';
 import SignInForm from './pages/SignIn/SignIn';
 import SignupForm from './pages/Signup/Signup';
 import Detail from './pages/Detail/Detail';
+import { Header } from './components/Header/Header';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <GlobalStyle />
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/review" element={<Review />} />

@@ -14,6 +14,7 @@ import { RiErrorWarningLine } from 'react-icons/ri';
 import GoogleLogo from '/public/GoogleLogo.svg';
 import FaceBookLogo from '/public/FaceBookLogo.svg';
 import AppleLogo from '/public/AppleLogo.svg';
+import { Link } from 'react-router-dom';
 
 type SignupFormData = {
   username: string;
@@ -50,7 +51,7 @@ const SignupForm = () => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     console.log(value);
 
-    if (value.length >= 3 && value.length <= 5) {
+    if (value.length >= 2 && value.length <= 5) {
       setIsValidName(true);
     } else {
       setIsValidName(false);
@@ -93,7 +94,7 @@ const SignupForm = () => {
           type="text"
           name="username"
           id="username"
-          placeholder="3글자 이상  ~  5글자 이하로 작성하세요."
+          placeholder="2글자 이상  ~  5글자 이하로 작성하세요."
           value={formData.username}
           onChange={handleChangeName}
           ref={usernameRef}
@@ -134,7 +135,7 @@ const SignupForm = () => {
           required
         />
         <Button>
-          PROCEED
+          회원가입
           <IconWrapper>
             <MdArrowForwardIos />
           </IconWrapper>
@@ -154,10 +155,10 @@ const SignupForm = () => {
           </a>
         </SocialLogin>
         <span>
-          Have an account?{' '}
-          <a>
-            <b>&nbsp;Log in</b>
-          </a>
+          Have an account?&nbsp;
+          <StyledLink to="/signin">
+            <b>Log in</b>
+          </StyledLink>
         </span>
       </SignUpFooter>
     </SignupWrapper>
@@ -166,40 +167,40 @@ const SignupForm = () => {
 
 const CheckStyle = styled(AiFillCheckCircle)`
   position: absolute;
-  right: 10%;
-  top: 46.4%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: green;
 `;
 
 const WarningStyle = styled(RiErrorWarningLine)`
   position: absolute;
-  right: 10%;
-  top: 46.4%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: red;
 `;
 
 const CheckStyle2 = styled(AiFillCheckCircle)`
   position: absolute;
-  right: 10%;
-  top: 56.6%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: green;
 `;
 
 const WarningStyle2 = styled(RiErrorWarningLine)`
   position: absolute;
-  right: 10%;
-  top: 56.6%;
+  right: 5%;
+  top: 232%;
   transform: translateY(-50%);
   color: red;
 `;
 
 const ShowingPW = styled(AiOutlineEye)`
   position: absolute;
-  right: 9.7%;
-  top: 66.8%;
+  right: 4%;
+  top: 232%;
   transform: translateY(-50%);
   font-size: 1.125rem;
   color: var(--gray-700);
@@ -207,8 +208,8 @@ const ShowingPW = styled(AiOutlineEye)`
 
 const NotShowingPW = styled(AiFillEyeInvisible)`
   position: absolute;
-  right: 9.7%;
-  top: 66.8%;
+  right: 4%;
+  top: 232%;
   transform: translateY(-50%);
   font-size: 1.125rem;
   color: var(--gray-700);
@@ -227,6 +228,7 @@ const SignupWrapper = styled.div`
   }
 
   label {
+    position: relative;
     margin-bottom: 7px;
     font-size: 15px;
   }
@@ -271,6 +273,13 @@ const SignUpFooter = styled.div`
     display: flex;
     justify-content: center;
     padding: 25px 0;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  &:focus,
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
