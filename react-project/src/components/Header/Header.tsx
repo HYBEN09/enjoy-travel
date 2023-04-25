@@ -21,6 +21,10 @@ export const Header: React.FC = () => {
     setIsMenuClicked(!isMenuClicked);
   };
 
+  const handleLinkClick = () => {
+    setIsMenuClicked(false); // 링크 클릭 시 메뉴 닫기
+  };
+
   return (
     <NavWrapper>
       <Nav>
@@ -38,22 +42,34 @@ export const Header: React.FC = () => {
 
       <Menu visible={isMenuClicked}>
         <MenuItem>
-          <Link to="/"> HOME</Link>
+          <Link to="/" onClick={handleLinkClick}>
+            HOME
+          </Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/review"> REVIEW</Link>
+          <Link to="/review" onClick={handleLinkClick}>
+            REVIEW
+          </Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/community"> COMMUNITY</Link>
+          <Link to="/community" onClick={handleLinkClick}>
+            COMMUNITY
+          </Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/news"> TRAVEL NEWS</Link>
+          <Link to="/news" onClick={handleLinkClick}>
+            TRAVEL NEWS
+          </Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/signin"> SIGNIN</Link>
+          <Link to="/signin" onClick={handleLinkClick}>
+            SIGNIN
+          </Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/signup"> SIGNUP</Link>
+          <Link to="/signup" onClick={handleLinkClick}>
+            SIGNUP
+          </Link>
         </MenuItem>
       </Menu>
     </NavWrapper>
