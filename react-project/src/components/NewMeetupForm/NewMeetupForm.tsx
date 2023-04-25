@@ -67,6 +67,7 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
       window.location.reload();
     } catch (error) {
       console.error('Error adding document: ', error);
+      alert('다시 한번 입력해 주세요.');
     }
   };
 
