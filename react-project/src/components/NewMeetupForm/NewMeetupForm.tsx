@@ -17,7 +17,9 @@ import { collection, addDoc } from '@firebase/firestore';
 import whenOptionsData from '@/data/whenOptionsData.json';
 import { TextAreaForm } from '../TextAreaForm/TextAreaForm';
 import { ref, uploadBytes, getDownloadURL } from '@firebase/storage';
+import { auth } from '@/firebase/auth';
 interface MeetupData {
+  uid: string;
   when: string;
   title: string;
   photoURL: string;
@@ -33,6 +35,8 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
   const imageInputRef = useRef<HTMLInputElement>(null);
   const descriptionInputRef = useRef<HTMLTextAreaElement>(null);
   const whenInputRef = useRef<HTMLSelectElement>(null);
+  const user = auth.currentUser;
+  const uid = user.uid;
 
   const submitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -53,6 +57,7 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
       const downloadURL = await getDownloadURL(storageRef);
 
       const meetupData: MeetupData = {
+        uid: uid,
         when: enteredWhen,
         title: enteredTitle,
         photoURL: downloadURL,
