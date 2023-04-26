@@ -10,6 +10,8 @@ import { collection, getDocs } from '@firebase/firestore';
 
 function Community() {
   const [meetups, setMeetups] = useState([]);
+  const [selectedMeetup, setSelectedMeetup] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,8 +28,9 @@ function Community() {
     fetchMeetups();
   }, []);
 
-  const handleCardClick = (meetupId) => {
-    navigate(`/community/:${meetupId}`);
+  const handleCardClick = (meetupTitle) => {
+    setSelectedMeetup(meetupTitle);
+    navigate(`/community/:${meetupTitle}`);
   };
 
   return (
@@ -66,14 +69,15 @@ const CommunityWrapper = styled.div`
 
   h2 {
     font-size: 30px;
-    margin: 1rem;
     color: var(--primary);
+    margin-top: 1rem;
   }
 `;
 
 const CommunityContent = styled.p`
   font-weight: 600;
-  margin: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   color: var(--gray-800);
 `;
 export default Community;
