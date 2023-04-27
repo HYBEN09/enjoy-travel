@@ -1,4 +1,5 @@
 import { initializeApp } from '@firebase/app';
+import { FacebookAuthProvider, getAuth } from '@firebase/auth';
 
 const {
   VITE_API_KEY,
@@ -21,3 +22,7 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
+
+const provider = new FacebookAuthProvider();
+
+export { provider };

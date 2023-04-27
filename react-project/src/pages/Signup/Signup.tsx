@@ -83,7 +83,7 @@ const SignupForm = () => {
   return (
     <SignupWrapper>
       <SignUpContainer onSubmit={handleSubmit}>
-        <h2>SignUp</h2>
+        <h2>Sign Up</h2>
 
         <label htmlFor="username">
           Username
@@ -144,15 +144,15 @@ const SignupForm = () => {
       <SignUpFooter>
         <span>Or Sign Up With</span>
         <SocialLogin>
-          <a href="#">
+          <button>
             <img src={GoogleLogo} alt="구글" />
-          </a>
-          <a href="#">
+          </button>
+          <button>
             <img src={FaceBookLogo} alt="페이스북" />
-          </a>
-          <a href="#">
+          </button>
+          <button>
             <img src={AppleLogo} alt="애플" />
-          </a>
+          </button>
         </SocialLogin>
         <span>
           Have an account?&nbsp;

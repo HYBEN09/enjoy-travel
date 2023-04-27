@@ -12,7 +12,14 @@ import { RiErrorWarningLine } from 'react-icons/ri';
 import GoogleLogo from '/public/GoogleLogo.svg';
 import FaceBookLogo from '/public/FaceBookLogo.svg';
 import AppleLogo from '/public/AppleLogo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  GoogleAuthProvider,
+  signInWithRedirect,
+  signInWithPopup,
+} from '@firebase/auth';
+import { auth } from '@/firebase/auth';
+import { provider } from '@/firebase/app';
 
 type SignInFormProps = {
   onSubmit: (formData: SignInFormData) => void;
@@ -67,6 +74,24 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
     setShowPassword(!showPassword);
   };
 
+  const navigate = useNavigate();
+
+  const handleGoogleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
+    navigate('/');
+  };
+
+  const handleFacebookSignIn = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <SignInWrapper>
       <SignInContainer onSubmit={handleSubmit}>
@@ -114,15 +139,15 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
       <SignInFooter>
         <span>Or Log In With</span>
         <SocialLogin>
-          <a>
+          <button onClick={handleGoogleSignIn}>
             <img src={GoogleLogo} alt="구글" />
-          </a>
-          <a>
+          </button>
+          <button onClick={handleFacebookSignIn}>
             <img src={FaceBookLogo} alt="페이스북" />
-          </a>
-          <a>
+          </button>
+          <button>
             <img src={AppleLogo} alt="애플" />
-          </a>
+          </button>
         </SocialLogin>
         <span>
           Newble?&nbsp;
@@ -242,7 +267,7 @@ const SignInFooter = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: var(--accent);
+  color: var(—accent);
   &:focus,
   &:hover {
     text-decoration: underline;

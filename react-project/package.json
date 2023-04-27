@@ -17,6 +17,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@greatsumini/react-facebook-login": "^3.3.3",
     "axios": "1.3.4",
     "firebase": "^9.17.2",
     "react": "^18.2.0",
