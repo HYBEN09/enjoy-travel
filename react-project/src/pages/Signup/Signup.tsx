@@ -15,6 +15,9 @@ import GoogleLogo from '/public/GoogleLogo.svg';
 import FaceBookLogo from '/public/FaceBookLogo.svg';
 import AppleLogo from '/public/AppleLogo.svg';
 import { Link } from 'react-router-dom';
+import { createUserWithEmailAndPassword } from '@firebase/auth';
+import { auth } from '@/firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 type SignupFormData = {
   username: string;
@@ -37,12 +40,27 @@ const SignupForm = () => {
   const [isValidPW, setIsValidPW] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isValidName && isValidEmail && isValidPW) {
       console.log(formData);
     } else {
       alert('⚠️ 회원가입 양식이 올바르지 않습니다. 다시 작성하세요.');
+    }
+
+    try {
+      const createdUser = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+      console.log(createdUser);
+      alert('회원가입이 완료되었습니다.');
+      navigate('/signin');
+    } catch (err) {
+      console.log(err.code);
     }
   };
 
