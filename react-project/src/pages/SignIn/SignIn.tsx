@@ -49,7 +49,6 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
     event.preventDefault();
     if (isValidEmail && isValidPW) {
       console.log(formData);
-      navigate('/home');
     } else {
       alert('⚠️ 아이디 혹은 비밀번호가 올바르지 않습니다. 다시 작성하세요.');
     }
@@ -63,8 +62,10 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
       );
       console.log(curUserInfo);
       alert('로그인 되었습니다.');
+      navigate('/home');
     } catch (err) {
       console.log(err.code);
+      alert('해당 계정이 없거나 잘못되었습니다. 다시 시도해주세요.');
       /*
       입력한 아이디가 없을 경우 : auth/user-not-found.
       비밀번호가 잘못된 경우 : auth/wrong-password.
