@@ -17,6 +17,7 @@ import {
   GoogleAuthProvider,
   signInWithRedirect,
   signInWithPopup,
+  signInWithEmailAndPassword,
 } from '@firebase/auth';
 import { auth } from '@/firebase/auth';
 import { provider } from '@/firebase/app';
@@ -42,14 +43,33 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
   const [isValidPW, setIsValidPW] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isValidEmail && isValidPW) {
       console.log(formData);
+      navigate('/home');
     } else {
       alert('⚠️ 아이디 혹은 비밀번호가 올바르지 않습니다. 다시 작성하세요.');
     }
     //onSubmit(formData);
+
+    try {
+      const curUserInfo = await signInWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+      console.log(curUserInfo);
+      alert('로그인 되었습니다.');
+    } catch (err) {
+      console.log(err.code);
+      /*
+      입력한 아이디가 없을 경우 : auth/user-not-found.
+      비밀번호가 잘못된 경우 : auth/wrong-password.
+      */
+    }
   };
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,8 +94,6 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
     setShowPassword(!showPassword);
   };
 
-  const navigate = useNavigate();
-
   const handleGoogleSignIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider);
@@ -85,7 +103,7 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
   const handleFacebookSignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result.user);
+        console.log('페이스북 로그인', result.user);
       })
       .catch((err) => {
         console.log(err);
@@ -267,7 +285,7 @@ const SignInFooter = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: var(—accent);
+  color: var(—accent) !important;
   &:focus,
   &:hover {
     text-decoration: underline;
