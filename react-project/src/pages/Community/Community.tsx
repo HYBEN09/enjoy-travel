@@ -17,7 +17,6 @@ function Community() {
   useEffect(() => {
     const fetchMeetups = async () => {
       try {
-        // Firestore에서 meetups 컬렉션의 데이터 가져오기
         const meetupsSnapshot = await getDocs(collection(db, 'meetups'));
         const meetupsData = meetupsSnapshot.docs.map((doc) => doc.data());
         setMeetups(meetupsData);
@@ -28,9 +27,9 @@ function Community() {
     fetchMeetups();
   }, []);
 
-  const handleCardClick = (meetupTitle) => {
-    setSelectedMeetup(meetupTitle);
-    navigate(`/community/:${meetupTitle}`);
+  const handleCardClick = (meetupTitle, meetup) => {
+    setSelectedMeetup(meetup);
+    navigate(`/community/${meetupTitle}`);
   };
 
   return (
@@ -46,7 +45,7 @@ function Community() {
             imageUrl={meetup.photoURL}
             title={meetup.title}
             children={meetup.description}
-            onClick={() => handleCardClick(meetup.title)}
+            onClick={() => handleCardClick(meetup.title, meetup)}
           />
         ))}
       </CommunityWrapper>
