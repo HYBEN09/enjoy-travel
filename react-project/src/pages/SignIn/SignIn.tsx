@@ -62,7 +62,7 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
       );
       console.log(curUserInfo);
       alert('로그인 되었습니다.');
-      navigate('/home');
+      navigate('/');
     } catch (err) {
       console.log(err.code);
       alert('해당 계정이 없거나 잘못되었습니다. 다시 시도해주세요.');
