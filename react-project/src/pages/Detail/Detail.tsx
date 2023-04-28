@@ -16,19 +16,24 @@ import { FaHeart } from 'react-icons/fa';
 import { db } from '@/firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import loading from '/public/assets/loading.svg';
 import { Footer } from '@/components/Footer/Footer';
 import { collection, getDocs } from '@firebase/firestore';
+import { LoadingSpinner } from '@/styles/LoadingStyled';
 
 function Detail() {
   const [expanded, setExpanded] = useState(false);
   const [selectedMeetup, setSelectedMeetup] = useState(null);
   const [liked, setLiked] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { meetupTitle } = useParams();
 
   useEffect(() => {
     const fetchMeetup = async () => {
       try {
+        setIsLoading(true);
+
         // Firestore에서 meetups 컬렉션의 데이터 가져오기
         const meetupsSnapshot = await getDocs(collection(db, 'meetups'));
         const meetupsData = meetupsSnapshot.docs.map((doc) => doc.data());
@@ -38,6 +43,7 @@ function Detail() {
           (meetup) => meetup.title === meetupTitle
         );
         setSelectedMeetup(meetup);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching meetups: ', error);
       }
@@ -55,6 +61,7 @@ function Detail() {
 
   return (
     <>
+      {isLoading && <LoadingSpinner src={loading} alt="로딩 중" />}
       {selectedMeetup && (
         <DetailWrapper>
           <DetailImageContainer>

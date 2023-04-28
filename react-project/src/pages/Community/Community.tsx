@@ -7,19 +7,25 @@ import { useNavigate } from 'react-router-dom';
 import { Footer } from '@/components/Footer/Footer';
 import { collection, getDocs } from '@firebase/firestore';
 import { CommunityContent, CommunityWrapper } from './CommunityStyled';
+import loading from '/public/assets/loading.svg';
+import { LoadingSpinner } from '@/styles/LoadingStyled';
 
 function Community() {
   const [meetups, setMeetups] = useState([]);
   const [selectedMeetup, setSelectedMeetup] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMeetups = async () => {
       try {
+        setIsLoading(true);
         const meetupsSnapshot = await getDocs(collection(db, 'meetups'));
         const meetupsData = meetupsSnapshot.docs.map((doc) => doc.data());
         setMeetups(meetupsData);
+
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching meetups: ', error);
       }
@@ -34,6 +40,7 @@ function Community() {
 
   return (
     <>
+      {isLoading && <LoadingSpinner src={loading} alt="로딩 중" />}
       <CommunityWrapper>
         <h2>여행후기</h2>
         <CommunityContent>
