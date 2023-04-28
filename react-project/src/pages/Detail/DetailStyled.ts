@@ -20,9 +20,9 @@ export const TitleContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
-    margin-top: 36px;
+    width: 35px;
+    height: 35px;
+    margin-top: 30px;
     font-size: 24px;
     border-radius: 10px;
     background-color: var(--gray-200);

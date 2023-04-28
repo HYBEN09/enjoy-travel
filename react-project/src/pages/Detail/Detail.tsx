@@ -12,6 +12,7 @@ import {
 } from './DetailStyled';
 import { Link } from 'react-router-dom';
 import { FiHeart } from 'react-icons/fi';
+import { FaHeart } from 'react-icons/fa';
 import { db } from '@/firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -21,6 +22,7 @@ import { collection, getDocs } from '@firebase/firestore';
 function Detail() {
   const [expanded, setExpanded] = useState(false);
   const [selectedMeetup, setSelectedMeetup] = useState(null);
+  const [liked, setLiked] = useState(false);
 
   const { meetupTitle } = useParams();
 
@@ -47,6 +49,10 @@ function Detail() {
     setExpanded((expanded) => !expanded);
   };
 
+  const handleLike = () => {
+    setLiked((liked) => !liked);
+  };
+
   return (
     <>
       {selectedMeetup && (
@@ -63,8 +69,8 @@ function Detail() {
             <span>🗓️ {selectedMeetup.when}</span>
             <TitleContainer>
               <h2>{selectedMeetup.title}</h2>
-              <button>
-                <FiHeart />
+              <button onClick={handleLike}>
+                {liked ? <FaHeart /> : <FiHeart />}
               </button>
             </TitleContainer>
             <DetailTextContainer>
