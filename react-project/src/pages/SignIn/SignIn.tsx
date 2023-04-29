@@ -45,6 +45,13 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
 
   const navigate = useNavigate();
 
+  const user = auth.currentUser;
+
+  if (user) {
+    console.log('유저가 있다잉.');
+    console.log(user);
+  }
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isValidEmail && isValidPW) {
