@@ -22,10 +22,6 @@ import {
 import { auth } from '@/firebase/auth';
 import { provider } from '@/firebase/app';
 
-type SignInFormProps = {
-  onSubmit: (formData: SignInFormData) => void;
-};
-
 type SignInFormData = {
   email: string;
   password: string;
@@ -44,13 +40,6 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
-
-  const user = auth.currentUser;
-
-  if (user) {
-    console.log('유저가 있다잉.');
-    console.log(user);
-  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -72,7 +61,7 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
       navigate('/');
     } catch (err) {
       console.log(err.code);
-      alert('해당 계정이 없거나 잘못되었습니다. 다시 시도해주세요.');
+      alert('⚠️ 해당 계정이 없거나 잘못되었습니다. 다시 시도해주세요.');
       /*
       입력한 아이디가 없을 경우 : auth/user-not-found.
       비밀번호가 잘못된 경우 : auth/wrong-password.
@@ -112,6 +101,7 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log('페이스북 로그인', result.user);
+        navigate('/');
       })
       .catch((err) => {
         console.log(err);
