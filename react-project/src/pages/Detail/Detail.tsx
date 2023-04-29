@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import loading from '/public/assets/loading.svg';
 import { Footer } from '@/components/Footer/Footer';
-import { collection, getDocs } from '@firebase/firestore';
+import { collection, getDocs, updateDoc, doc } from '@firebase/firestore';
 import { LoadingSpinner } from '@/styles/LoadingStyled';
 
 function Detail() {
@@ -43,6 +43,7 @@ function Detail() {
           (meetup) => meetup.title === meetupTitle
         );
         setSelectedMeetup(meetup);
+        setLiked(meetup.liked || false);
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching meetups: ', error);
@@ -55,8 +56,14 @@ function Detail() {
     setExpanded((expanded) => !expanded);
   };
 
-  const handleLike = () => {
+  const handleLike = async () => {
     setLiked((liked) => !liked);
+    const meetupRef = collection(db, 'meetups');
+    const meetupSnapshot = await getDocs(meetupRef);
+    const meetupId = meetupSnapshot.docs.find(
+      (doc) => doc.data().title === meetupTitle
+    ).id;
+    await updateDoc(doc(meetupRef, meetupId), { liked: !liked });
   };
 
   return (
