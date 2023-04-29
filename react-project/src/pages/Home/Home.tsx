@@ -12,8 +12,10 @@ export default function Home() {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
+    if (!event.target.value) {
+      setWeatherData(null);
+    }
   };
-
   const handleSearchClick = async () => {
     try {
       const response = await axios.get(
@@ -110,6 +112,12 @@ const InputWrapper = styled.div`
 
 const WeatherInfo = styled.div`
   margin-top: 2rem;
+
+  h2 {
+    margin: 4px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--secondary);
+  }
 `;
 
 const WeatherDetails = styled.ul`
@@ -134,8 +142,18 @@ const WeatherDetailTitle = styled.div`
 `;
 
 const WeatherDetailValue = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
   font-size: 1.25rem;
   font-weight: 500;
   color: var(--gray-800);
   text-align: center;
+
+  img {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+  }
 `;
