@@ -57,7 +57,9 @@ function Detail() {
   };
 
   const handleLike = async () => {
+    if (!selectedMeetup) return;
     setLiked((liked) => !liked);
+
     const meetupRef = collection(db, 'meetups');
     const meetupSnapshot = await getDocs(meetupRef);
     const meetupId = meetupSnapshot.docs.find(
