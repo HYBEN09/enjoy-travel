@@ -1,8 +1,9 @@
-import { Input } from '@/components/Input/Input';
-import styled from 'styled-components';
-import { AiOutlineSearch } from 'react-icons/ai';
 import axios from 'axios';
+import styled from 'styled-components';
+import { Input } from '@/components/Input/Input';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { WeatherInformation } from '@/components/WeatherInformation/WeatherInformation';
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -50,35 +51,7 @@ export default function Home() {
             <AiOutlineSearch className="searchIcon" />
           </button>
         </InputWrapper>
-        {weatherData && (
-          <WeatherInfo>
-            <h2>{weatherData.name} 날씨 정보</h2>
-            <WeatherDetails>
-              <WeatherDetailItem>
-                <WeatherDetailTitle>온도</WeatherDetailTitle>
-                <WeatherDetailValue>
-                  {weatherData.main.temp} °C
-                </WeatherDetailValue>
-              </WeatherDetailItem>
-              <WeatherDetailItem>
-                <WeatherDetailTitle>습도</WeatherDetailTitle>
-                <WeatherDetailValue>
-                  <img
-                    src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
-                    alt="날씨 아이콘"
-                  />
-                  {weatherData.weather[0].description}
-                </WeatherDetailValue>
-              </WeatherDetailItem>
-              <WeatherDetailItem>
-                <WeatherDetailTitle>날씨</WeatherDetailTitle>
-                <WeatherDetailValue>
-                  {weatherData.weather[0].description}
-                </WeatherDetailValue>
-              </WeatherDetailItem>
-            </WeatherDetails>
-          </WeatherInfo>
-        )}
+        {weatherData && <WeatherInformation weatherData={weatherData} />}
       </HomeWrapper>
     </>
   );
@@ -107,53 +80,5 @@ const InputWrapper = styled.div`
     position: absolute;
     right: 30px;
     font-size: 24px;
-  }
-`;
-
-const WeatherInfo = styled.div`
-  margin-top: 2rem;
-
-  h2 {
-    margin: 4px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--secondary);
-  }
-`;
-
-const WeatherDetails = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-`;
-
-const WeatherDetailItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 33.33%;
-  margin-bottom: 1.5rem;
-`;
-
-const WeatherDetailTitle = styled.div`
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--blue-600);
-  margin-bottom: 0.5rem;
-`;
-
-const WeatherDetailValue = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--gray-800);
-  text-align: center;
-
-  img {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
   }
 `;
