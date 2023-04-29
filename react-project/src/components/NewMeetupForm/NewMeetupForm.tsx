@@ -7,7 +7,7 @@ import {
   ReviewContent,
   ReviewTitle,
 } from './NewMeetupFormStyled';
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useContext, useRef } from 'react';
 import { db } from '@/firebase/firestore';
 import { storage } from '@/firebase/storage';
 import { InputForm } from '../InputForm/InputForm';
@@ -17,7 +17,8 @@ import { collection, addDoc } from '@firebase/firestore';
 import whenOptionsData from '@/data/whenOptionsData.json';
 import { TextAreaForm } from '../TextAreaForm/TextAreaForm';
 import { ref, uploadBytes, getDownloadURL } from '@firebase/storage';
-import { auth } from '@/firebase/auth';
+import { AuthContext } from '@/context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 interface MeetupData {
   uid: string;
   when: string;
@@ -35,9 +36,16 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
   const imageInputRef = useRef<HTMLInputElement>(null);
   const descriptionInputRef = useRef<HTMLTextAreaElement>(null);
   const whenInputRef = useRef<HTMLSelectElement>(null);
-  const user = auth.currentUser;
-  const uid = user.uid;
+  const navigation = useNavigate();
 
+  const { currentUser } = useContext(AuthContext);
+
+  const uid = currentUser?.uid;
+
+  if (!currentUser || !uid) {
+    // 사용자 로그인 상태가 아니거나 uid가 없을 경우 예외 처리
+    return;
+  }
   const submitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const enteredWhen = whenInputRef.current.value;
@@ -69,6 +77,7 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
       console.log('Document written with ID: ', docRef.id);
       alert('리뷰가 생성되었습니다.');
       props.onAddMeetup(meetupData);
+      navigation('/community');
       window.location.reload();
     } catch (error) {
       console.error('Error adding document: ', error);
