@@ -1,8 +1,7 @@
-import { RefObject } from 'react';
-import { Input } from './InputFormStyled';
+import { Input } from '../Input/Input';
 
 interface inputProps {
-  titleInputRef: RefObject<HTMLInputElement>;
+  titleInputRef: React.RefObject<HTMLInputElement>;
 }
 
 export function InputForm({ titleInputRef }: inputProps) {
@@ -10,9 +9,9 @@ export function InputForm({ titleInputRef }: inputProps) {
     <>
       <Input
         type="text"
-        required
         id="title"
         placeholder="경험했던 것 중 가장 중요한 정보를 알려주세요"
+        onChange={(e) => console.log(e.target.value)}
         ref={titleInputRef}
       />
     </>
