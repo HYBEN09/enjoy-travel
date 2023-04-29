@@ -38,9 +38,9 @@ export const Header: React.FC = () => {
     <NavWrapper>
       <Nav>
         <NavLogo>
-          <a href="#">
-            <img src={mainLogo} alt="구글" />
-          </a>
+          <Link to="/">
+            <img src={mainLogo} alt=" " />
+          </Link>
         </NavLogo>
         <BurgerMenu onClick={updateMenu}>
           <BurgerBarTop clicked={isMenuClicked} />
