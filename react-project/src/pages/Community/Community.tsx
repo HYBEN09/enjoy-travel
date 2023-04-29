@@ -4,11 +4,11 @@ import Card from '@/components/Card/Card';
 import { db } from '@/firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import loading from '/public/assets/loading.svg';
 import { Footer } from '@/components/Footer/Footer';
+import { LoadingSpinner } from '@/styles/LoadingStyled';
 import { collection, getDocs } from '@firebase/firestore';
 import { CommunityContent, CommunityWrapper } from './CommunityStyled';
-import loading from '/public/assets/loading.svg';
-import { LoadingSpinner } from '@/styles/LoadingStyled';
 
 function Community() {
   const [meetups, setMeetups] = useState([]);
@@ -22,9 +22,10 @@ function Community() {
       try {
         setIsLoading(true);
         const meetupsSnapshot = await getDocs(collection(db, 'meetups'));
-        const meetupsData = meetupsSnapshot.docs.map((doc) => doc.data());
+        const meetupsData = meetupsSnapshot.docs
+          .map((doc) => doc.data())
+          .reverse();
         setMeetups(meetupsData);
-
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching meetups: ', error);
