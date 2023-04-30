@@ -3,6 +3,7 @@
 import {
   Button,
   Form,
+  FormButtonGroup,
   FormGroup,
   Label,
   ReviewContent,
@@ -115,9 +116,9 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
         <ImageForm imageInputRef={imageInputRef} />
       </FormGroup>
 
-      <FormGroup>
+      <FormButtonGroup>
         <Button>리뷰 제출</Button>
-      </FormGroup>
+      </FormButtonGroup>
     </Form>
   );
 }
