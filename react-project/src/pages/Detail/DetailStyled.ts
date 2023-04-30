@@ -97,6 +97,10 @@ export const RedeMoreButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    color: var(--secondary);
+  }
 `;
 
 export const BackArrow = styled(RiArrowGoBackFill)`

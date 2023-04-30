@@ -18,8 +18,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import loading from '/public/assets/loading.svg';
 import { Footer } from '@/components/Footer/Footer';
-import { collection, getDocs, updateDoc, doc } from '@firebase/firestore';
 import { LoadingSpinner } from '@/styles/LoadingStyled';
+import { collection, getDocs, updateDoc, doc } from '@firebase/firestore';
 
 function Detail() {
   const [expanded, setExpanded] = useState(false);
@@ -109,8 +109,6 @@ function Detail() {
           </Button>
         </DetailWrapper>
       )}
-
-      <Footer />
     </>
   );
 }
