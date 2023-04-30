@@ -8,6 +8,8 @@ import SignInForm from './pages/SignIn/SignIn';
 import SignupForm from './pages/Signup/Signup';
 import Detail from './pages/Detail/Detail';
 import { Header } from './components/Header/Header';
+import { Footer } from './components/Footer/Footer';
+import Liked from './pages/Liked/Liked';
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/signIn" element={<SignInForm />} />
           <Route path="/signUp" element={<SignupForm />} />
+          <Route path="/liked" element={<Liked />} />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );
