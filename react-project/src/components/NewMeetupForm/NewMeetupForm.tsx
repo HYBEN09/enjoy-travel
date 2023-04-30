@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 import {
   Button,
@@ -7,7 +8,7 @@ import {
   ReviewContent,
   ReviewTitle,
 } from './NewMeetupFormStyled';
-import { FormEvent, useContext, useRef } from 'react';
+import { FormEvent, useContext, useEffect, useRef } from 'react';
 import { db } from '@/firebase/firestore';
 import { storage } from '@/firebase/storage';
 import { InputForm } from '../InputForm/InputForm';
@@ -42,10 +43,14 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
 
   const uid = currentUser?.uid;
 
-  if (!currentUser || !uid) {
-    // 사용자 로그인 상태가 아니거나 uid가 없을 경우 예외 처리
+  if (!currentUser && !uid) {
+    alert('로그인을 해야 작성하실수있습니다🥲');
+    useEffect(() => {
+      navigation('/signin');
+    }, [navigation]);
     return;
   }
+
   const submitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const enteredWhen = whenInputRef.current.value;
