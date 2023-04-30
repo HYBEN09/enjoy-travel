@@ -18,8 +18,13 @@ export function Footer() {
   const goToCommunity = () => {
     navigate('/community');
   };
+
   const goToNews = () => {
     navigate('/news');
+  };
+
+  const goToLiked = () => {
+    navigate('/liked');
   };
 
   // tooltip
@@ -43,7 +48,7 @@ export function Footer() {
         >
           <IoHome />
         </FooterButton>
-        <FooterButton type="button" aria-label="찜">
+        <FooterButton type="button" aria-label="찜" onClick={goToLiked}>
           <FiHeart />
         </FooterButton>
         <FooterButton
@@ -65,7 +70,6 @@ export function Footer() {
           <MdOutlineRateReview />
         </FooterButton>
       </FooterWrapper>
-      {tooltipText && <Tooltip>{tooltipText}</Tooltip>}
     </>
   );
 }
