@@ -25,6 +25,7 @@ export default function Home() {
       setWeatherData(response.data);
     } catch (error) {
       console.error(error);
+      alert('영어로 입력해주세요 😢');
     }
   };
 
