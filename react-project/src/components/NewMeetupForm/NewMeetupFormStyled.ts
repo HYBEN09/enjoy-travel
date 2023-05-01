@@ -5,7 +5,11 @@ export const Form = styled.form`
   padding: 0.5rem;
 `;
 export const FormGroup = styled.div`
-  margin-top: 3rem;
+  margin-top: 2rem;
+`;
+export const FormButtonGroup = styled.div`
+  margin-top: 1rem;
+  margin-bottom: 5rem;
 `;
 
 export const Label = styled.label`

@@ -1,5 +1,6 @@
 /* eslint-disable react/no-children-prop */
 import Card from '../Card/Card';
+import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import loading from '/public/assets/loading.svg';
@@ -30,7 +31,7 @@ export function MeetupCard() {
       {isLoading && <LoadingSpinner src={loading} alt="로딩 중" />}
       {meetups.map((meetup) => (
         <Card
-          key={meetup.id}
+          key={uuidv4()}
           imageUrl={meetup.photoURL}
           title={meetup.title}
           children={meetup.description}

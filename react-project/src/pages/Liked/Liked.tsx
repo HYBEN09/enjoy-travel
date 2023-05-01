@@ -1,4 +1,5 @@
 /* eslint-disable react/no-children-prop */
+import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
 import { db } from '@/firebase/firestore';
 import Card from '@/components/Card/Card';
@@ -49,7 +50,7 @@ function Liked() {
       <LikedContent>내가 찜한 후기들 😎</LikedContent>
       {likedMeetups.map((meetup) => (
         <Card
-          key={meetup.id}
+          key={uuidv4()}
           imageUrl={meetup.photoURL}
           title={meetup.title}
           children={meetup.description}
