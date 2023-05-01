@@ -9,24 +9,30 @@ import {
   ReviewContent,
   ReviewTitle,
 } from './NewMeetupFormStyled';
-import { FormEvent, useContext, useEffect, useRef } from 'react';
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  FieldValue,
+} from '@firebase/firestore';
 import { db } from '@/firebase/firestore';
 import { storage } from '@/firebase/storage';
+import { useNavigate } from 'react-router-dom';
 import { InputForm } from '../InputForm/InputForm';
 import { ImageForm } from '../ImageForm/ImageForm';
+import { AuthContext } from '@/context/AuthContext';
 import { SelectForm } from '../SelectForm/SelectForm';
-import { collection, addDoc } from '@firebase/firestore';
 import whenOptionsData from '@/data/whenOptionsData.json';
 import { TextAreaForm } from '../TextAreaForm/TextAreaForm';
+import { FormEvent, useContext, useEffect, useRef } from 'react';
 import { ref, uploadBytes, getDownloadURL } from '@firebase/storage';
-import { AuthContext } from '@/context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 interface MeetupData {
   uid: string;
   when: string;
   title: string;
   photoURL: string;
   description: string;
+  createdAt: FieldValue;
 }
 
 interface NewMeetupFormProps {
@@ -76,6 +82,7 @@ export function NewMeetupForm(props: NewMeetupFormProps) {
         title: enteredTitle,
         photoURL: downloadURL,
         description: enteredDescription,
+        createdAt: serverTimestamp(),
       };
 
       // Firebase Firestore에 미팅 데이터 추가
