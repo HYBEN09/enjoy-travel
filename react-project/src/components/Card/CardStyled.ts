@@ -23,7 +23,7 @@ export const CardWrapper = styled.div`
 export const Image = styled.img`
   overflow: hidden;
   width: 160px;
-  height: 130px;
+  height: 160px;
   border-radius: 10px;
 `;
 
