@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
         </MenuItem>
         <MenuItem>
           <Link to="/news" onClick={handleLinkClick}>
-            TRAVEL NEWS
+            GLOBAL NEWS
           </Link>
         </MenuItem>
         {user ? (
