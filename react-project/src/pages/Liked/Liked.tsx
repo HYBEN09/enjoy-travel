@@ -12,9 +12,9 @@ import { collection, getDocs, where, query } from '@firebase/firestore';
 function Liked() {
   const navigate = useNavigate();
 
-  const [selectedMeetup, setSelectedMeetup] = useState(null);
-  const [likedMeetups, setLikedMeetups] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [likedMeetups, setLikedMeetups] = useState([]);
+  const [selectedMeetup, setSelectedMeetup] = useState(null);
 
   useEffect(() => {
     const fetchLikedMeetups = async () => {
@@ -46,17 +46,21 @@ function Liked() {
   return (
     <LikedWrapper>
       {isLoading && <LoadingSpinner src={loading} alt="로딩 중" />}
-      <h2>좋아요 한 후기들 </h2>
+      <h2>좋아요 한 후기들</h2>
       <LikedContent>내가 찜한 후기들 😎</LikedContent>
-      {likedMeetups.map((meetup) => (
-        <Card
-          key={uuidv4()}
-          imageUrl={meetup.photoURL}
-          title={meetup.title}
-          children={meetup.description}
-          onClick={() => handleCardClick(meetup.title, meetup)}
-        />
-      ))}
+      {likedMeetups.length > 0 ? (
+        likedMeetups.map((meetup) => (
+          <Card
+            key={uuidv4()}
+            imageUrl={meetup.photoURL}
+            title={meetup.title}
+            children={meetup.description}
+            onClick={() => handleCardClick(meetup.title, meetup)}
+          />
+        ))
+      ) : (
+        <LikedNoContent>찜한 목록이 없습니다.🤨</LikedNoContent>
+      )}
     </LikedWrapper>
   );
 }
@@ -78,6 +82,15 @@ const LikedContent = styled.p`
   margin-top: 1rem;
   margin-bottom: 1rem;
   color: var(--gray-800);
+`;
+
+const LikedNoContent = styled.p`
+  font-weight: 600;
+  font-size: 32px;
+  margin-top: 1rem;
+  text-align: center;
+  line-height: 500px;
+  color: var(--secondary);
 `;
 
 export default Liked;
