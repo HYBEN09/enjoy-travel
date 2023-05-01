@@ -12,12 +12,12 @@ export const ImageInput = styled.input`
 `;
 
 export const ImageContainer = styled.div`
-  margin-top: 30px;
-  padding: 10px;
+  margin-top: 20px;
+  padding: 5px;
   border-radius: 16px;
 `;
 
 export const Image = styled.img`
   width: 350px;
-  height: 300px;
+  height: 400px;
 `;
