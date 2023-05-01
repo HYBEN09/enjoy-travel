@@ -1,28 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import NewsItem from './NewsItem';
 import axios from 'axios';
-
-const NewsListBlock = styled.div`
-  box-sizing: border-box;
-  padding-bottom: 3rem;
-  width: 768px;
-  margin: 0 auto;
-  margin-top: 2rem;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-`;
-/*
-const sampleArticle = {
-  title: '제목',
-  description: '내용',
-  url: 'https://google.com',
-  urlToImage: 'https://via.placeholder.com/160',
-};
-*/
+import { LoadingSpinner } from '@/styles/LoadingStyled';
+import loadingImg from '/public/assets/loading.svg';
+import { NewsListBlock } from './NewsFormStyled';
 
 const NewsList = () => {
   const [articles, setArticles] = useState(null);
@@ -49,7 +30,11 @@ const NewsList = () => {
 
   // 대기 중일 때
   if (loading) {
-    return <NewsListBlock>대기 중...</NewsListBlock>;
+    return (
+      <NewsListBlock>
+        <LoadingSpinner src={loadingImg} alt="로딩 중" />
+      </NewsListBlock>
+    );
   }
 
   // 아직 articles 값이 설정되지 않았을 때

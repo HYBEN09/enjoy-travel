@@ -1,39 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
+import { NewsItemBlock } from './NewsFormStyled';
 
-const NewsItemBlock = styled.div`
-    display: flex;
-    .thumbnail {
-        margin-right: 1rem;
-        img{
-            dispaly:block;
-            width: 30rem;
-            height: 150px;
-            object-fit:cover;
-        }
-    }
-    .contents {
-        h2 {
-            margin : 0;
-            a{
-                color :black;
-            }
-        }
-    }
-    p{
-        margin : 0;
-        line-height:1.5;
-        margin-top: 0.5rem;
-        white-space:normal;
-        font-size:12px;
-    }
+interface NewsItemProps {
+  article: object;
 }
-& + & {
-    margin-top:3rem;
-}`;
 
-const NewsItem = ({ article }) => {
-  const { title, description, url, urlToImage } = article;
+interface articleProps {
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+}
+
+export default function NewsItem({ article }: NewsItemProps) {
+  const { title, description, url, urlToImage } = article as articleProps;
   console.log(article);
   return (
     <NewsItemBlock>
@@ -54,6 +33,4 @@ const NewsItem = ({ article }) => {
       </div>
     </NewsItemBlock>
   );
-};
-
-export default NewsItem;
+}
