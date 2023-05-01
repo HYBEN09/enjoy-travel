@@ -5,11 +5,7 @@ function Review() {
     console.log(enteredMeetupData);
   }
 
-  return (
-    <>
-      <NewMeetupForm onAddMeetup={addMeetupHandler} />
-    </>
-  );
+  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
 }
 
 export default Review;

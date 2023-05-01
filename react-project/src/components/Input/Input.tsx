@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { forwardRef, Ref } from 'react';
 import { InputForm } from './InputStyled';
+
 type InputProps = {
-  type: string;
-  placeholder?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   id?: string;
+  type: string;
+  value?: string;
   className?: string;
+  placeholder?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 };
 
@@ -18,15 +19,15 @@ export const Input = forwardRef(
 
     return (
       <InputForm
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+        id={id}
         required
         ref={ref}
-        id={id}
+        type={type}
+        value={value}
+        onChange={onChange}
         className={className}
         onKeyPress={onKeyPress}
+        placeholder={placeholder}
       />
     );
   }
