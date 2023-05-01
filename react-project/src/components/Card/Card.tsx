@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = ({ title, imageUrl, children, onClick }) => {
       : children;
 
   return (
-    <CardWrapper onClick={onClick}>
+    <CardWrapper onClick={onClick} tabIndex={0}>
       <div>
         <Image src={imageUrl} alt="리뷰 사진" />
       </div>
