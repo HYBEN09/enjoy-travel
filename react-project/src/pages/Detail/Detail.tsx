@@ -17,23 +17,21 @@ import {
   updateDoc,
   doc,
   setDoc,
-  addDoc,
+  getDoc,
 } from '@firebase/firestore';
+import { auth } from '@/firebase/auth';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { db } from '@/firebase/firestore';
-import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import loading from '/public/assets/loading.svg';
-import { LoadingSpinner } from '@/styles/LoadingStyled';
-import { auth } from '@/firebase/auth';
 import { BsPencilSquare } from 'react-icons/bs';
-import styled from 'styled-components';
+import loading from '/public/assets/loading.svg';
 import { AuthContext } from '@/context/AuthContext';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import firebase from 'firebase/compat/app';
+import { LoadingSpinner } from '@/styles/LoadingStyled';
+import { useContext, useEffect, useState } from 'react';
+
 function Detail() {
   const [liked, setLiked] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -43,8 +41,10 @@ function Detail() {
   const [selectedMeetup, setSelectedMeetup] = useState(null);
   const [editedTitle, setEditedTitle] = useState('');
   const [editedDescription, setEditedDescription] = useState('');
+
   const { meetupTitle } = useParams();
   const { currentUser } = useContext(AuthContext);
+
   //* -------------------------------------------------------------
   useEffect(() => {
     const fetchMeetup = async () => {
@@ -53,19 +53,24 @@ function Detail() {
 
         // Firestore에서 meetups 컬렉션의 데이터 가져오기
         const meetupsSnapshot = await getDocs(collection(db, 'meetups'));
-        const meetupsData = meetupsSnapshot.docs.map((doc) => doc.data());
+        const meetupsData = meetupsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ref: doc.ref,
+          data: doc.data(),
+        }));
 
         // meetups 상태 변수에서 해당 타이틀 값과 일치하는 카드 정보를 찾아 selectedMeetup 상태 변수에 저장
         const meetup = meetupsData.find(
-          (meetup) => meetup.title === meetupTitle
+          (meetup) => meetup.data.title === meetupTitle
         );
 
         if (meetup) {
-          // meetup이 존재하는 경우에만 setSelectedMeetup을 호출합니다.
-          setSelectedMeetup(meetup);
-          setLiked(meetup.liked || false);
-          setReviewUid(meetup.uid);
+          // meetup이 존재하는 경우에만 setSelectedMeetup을 호출.
+          setSelectedMeetup({ ...meetup.data, id: meetup.id });
+          setLiked(meetup.data.liked || false);
+          setReviewUid(meetup.data.uid);
         }
+
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching meetups: ', error);
@@ -123,36 +128,41 @@ function Detail() {
 
   const handleEdit = () => {
     setIsEditing(true);
-    console.log(selectedMeetup);
-    console.log(selectedMeetup.docId);
-    console.log(selectedMeetup.id);
   };
 
   const handleSave = async () => {
     try {
       setIsLoading(true);
-      const docRef = doc(
-        db,
-        'meetups',
-        firebase.firestore.FieldPath.documentId(),
-        'abc123'
-      );
-      const meetupRef = doc(db, 'meetups', selectedMeetup.id);
-      // const meetupRef = doc(db, 'meetups', selectedMeetup.uid);
 
-      await updateDoc(meetupRef, {
-        title: editedTitle,
-        description: editedDescription,
-      });
+      if (selectedMeetup) {
+        const docRef = doc(db, 'meetups', selectedMeetup.id);
+        const newTitle = editedTitle || selectedMeetup.title;
+        const newDescription = editedDescription || selectedMeetup.description;
 
-      setIsLoading(false);
-      setIsEditing(false);
+        if (
+          newTitle !== selectedMeetup.title ||
+          newDescription !== selectedMeetup.description
+        ) {
+          await updateDoc(docRef, {
+            title: newTitle,
+            description: newDescription,
+          });
+
+          const docSnap = await getDoc(docRef);
+          const updatedMeetupData = { id: docSnap.id, ...docSnap.data() };
+
+          setSelectedMeetup(updatedMeetupData);
+          setIsEditing(false);
+        }
+      }
     } catch (error) {
       console.error('Error updating meetup: ', error);
+    } finally {
       setIsLoading(false);
     }
   };
 
+  //* -------------------------------------------------------------
   return (
     <>
       {isLoading && <LoadingSpinner src={loading} alt="로딩 중" />}
@@ -185,7 +195,7 @@ function Detail() {
                   defaultValue={selectedMeetup.description}
                   onChange={(e) => setEditedDescription(e.target.value)}
                 />
-                <button onClick={handleSave}>Save</button>
+                <button onClick={handleSave}>저장</button>
               </EditFields>
             ) : (
               <DetailTextContainer>
