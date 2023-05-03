@@ -4,6 +4,7 @@ import { Input } from '@/components/Input/Input';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { WeatherInformation } from '@/components/WeatherInformation/WeatherInformation';
+import CardList from '@/components/CardList/CardList';
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -53,6 +54,7 @@ export default function Home() {
           </button>
         </InputWrapper>
         {weatherData && <WeatherInformation weatherData={weatherData} />}
+        <CardList />
       </HomeWrapper>
     </>
   );
