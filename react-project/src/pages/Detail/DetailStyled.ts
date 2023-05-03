@@ -108,3 +108,14 @@ export const BackArrow = styled(RiArrowGoBackFill)`
   margin-left: 3px;
   margin-bottom: -6px;
 `;
+
+export const EditButton = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 5px 10px 5px;
+  button {
+    font-size: 24px;
+    color: var(--blue-700);
+  }
+`;
