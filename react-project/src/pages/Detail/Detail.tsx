@@ -8,6 +8,7 @@ import {
   DetailTextContainer,
   DetailWrapper,
   EditButton,
+  EditFields,
   RedeMoreButton,
   TitleContainer,
 } from './DetailStyled';
@@ -34,12 +35,12 @@ import { useContext, useEffect, useState } from 'react';
 
 function Detail() {
   const [liked, setLiked] = useState(false);
+  const [reviewUid, setReviewUid] = useState('');
   const [expanded, setExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [reviewUid, setReviewUid] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedMeetup, setSelectedMeetup] = useState(null);
   const [editedTitle, setEditedTitle] = useState('');
+  const [selectedMeetup, setSelectedMeetup] = useState(null);
   const [editedDescription, setEditedDescription] = useState('');
 
   const { meetupTitle } = useParams();
@@ -230,23 +231,4 @@ function Detail() {
   );
 }
 
-const EditFields = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-
-  input,
-  textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    border: none;
-    border-radius: 0.25rem;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
-  }
-
-  textarea {
-    height: 10rem;
-  }
-`;
 export default Detail;
