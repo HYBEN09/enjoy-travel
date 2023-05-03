@@ -7,7 +7,7 @@ import { CardTitle, CardWrapper, SliderWrapper } from './CardListStyled';
 const CardList = () => {
   return (
     <>
-      <CardTitle>Popular</CardTitle>
+      <CardTitle>Popular Country</CardTitle>
       <SliderWrapper tabIndex={0}>
         <Slider {...settings}>
           {tripData.map((card) => (
