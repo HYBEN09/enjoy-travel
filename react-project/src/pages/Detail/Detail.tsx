@@ -11,36 +11,40 @@ import {
   RedeMoreButton,
   TitleContainer,
 } from './DetailStyled';
-import { Link } from 'react-router-dom';
-import { FiHeart } from 'react-icons/fi';
-import { FaHeart } from 'react-icons/fa';
-import { db } from '@/firebase/firestore';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import loading from '/public/assets/loading.svg';
-import { LoadingSpinner } from '@/styles/LoadingStyled';
 import {
   collection,
   getDocs,
   updateDoc,
   doc,
   setDoc,
+  addDoc,
 } from '@firebase/firestore';
+import { Link } from 'react-router-dom';
+import { FiHeart } from 'react-icons/fi';
+import { FaHeart } from 'react-icons/fa';
+import { db } from '@/firebase/firestore';
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import loading from '/public/assets/loading.svg';
+import { LoadingSpinner } from '@/styles/LoadingStyled';
 import { auth } from '@/firebase/auth';
 import { BsPencilSquare } from 'react-icons/bs';
 import styled from 'styled-components';
-
+import { AuthContext } from '@/context/AuthContext';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import firebase from 'firebase/compat/app';
 function Detail() {
   const [liked, setLiked] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [reviewUid, setReviewUid] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [selectedMeetup, setSelectedMeetup] = useState(null);
   const [editedTitle, setEditedTitle] = useState('');
   const [editedDescription, setEditedDescription] = useState('');
-  const [selectedMeetup, setSelectedMeetup] = useState(null);
-
   const { meetupTitle } = useParams();
+  const { currentUser } = useContext(AuthContext);
   //* -------------------------------------------------------------
   useEffect(() => {
     const fetchMeetup = async () => {
@@ -50,16 +54,18 @@ function Detail() {
         // Firestore에서 meetups 컬렉션의 데이터 가져오기
         const meetupsSnapshot = await getDocs(collection(db, 'meetups'));
         const meetupsData = meetupsSnapshot.docs.map((doc) => doc.data());
-        console.log(meetupsData);
 
         // meetups 상태 변수에서 해당 타이틀 값과 일치하는 카드 정보를 찾아 selectedMeetup 상태 변수에 저장
         const meetup = meetupsData.find(
           (meetup) => meetup.title === meetupTitle
         );
 
-        setSelectedMeetup(meetup);
-        setLiked(meetup.liked || false);
-        setReviewUid(meetup.uid);
+        if (meetup) {
+          // meetup이 존재하는 경우에만 setSelectedMeetup을 호출합니다.
+          setSelectedMeetup(meetup);
+          setLiked(meetup.liked || false);
+          setReviewUid(meetup.uid);
+        }
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching meetups: ', error);
@@ -117,10 +123,34 @@ function Detail() {
 
   const handleEdit = () => {
     setIsEditing(true);
+    console.log(selectedMeetup);
+    console.log(selectedMeetup.docId);
+    console.log(selectedMeetup.id);
   };
 
-  const handleSave = () => {
-    console.log('save');
+  const handleSave = async () => {
+    try {
+      setIsLoading(true);
+      const docRef = doc(
+        db,
+        'meetups',
+        firebase.firestore.FieldPath.documentId(),
+        'abc123'
+      );
+      const meetupRef = doc(db, 'meetups', selectedMeetup.id);
+      // const meetupRef = doc(db, 'meetups', selectedMeetup.uid);
+
+      await updateDoc(meetupRef, {
+        title: editedTitle,
+        description: editedDescription,
+      });
+
+      setIsLoading(false);
+      setIsEditing(false);
+    } catch (error) {
+      console.error('Error updating meetup: ', error);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -159,7 +189,7 @@ function Detail() {
               </EditFields>
             ) : (
               <DetailTextContainer>
-                {auth.currentUser.uid === reviewUid && ( // 추가된 조건문
+                {currentUser.uid === reviewUid && (
                   <EditButton>
                     <button type="button" onClick={handleEdit}>
                       <BsPencilSquare />
