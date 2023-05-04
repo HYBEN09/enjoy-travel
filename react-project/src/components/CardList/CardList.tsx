@@ -4,7 +4,7 @@ import tripData from '@/data/tripData.json';
 import 'slick-carousel/slick/slick-theme.css';
 import { CardTitle, CardWrapper, SliderWrapper } from './CardListStyled';
 
-const CardList = () => {
+export const CardList = () => {
   return (
     <>
       <CardTitle>Popular Country</CardTitle>
@@ -51,5 +51,3 @@ const settings = {
     },
   ],
 };
-
-export default CardList;
