@@ -22,7 +22,7 @@ import {
 } from '@firebase/firestore';
 import { auth } from '@/firebase/auth';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { db } from '@/firebase/firestore';
@@ -43,6 +43,7 @@ function Detail() {
   const [selectedMeetup, setSelectedMeetup] = useState(null);
   const [editedDescription, setEditedDescription] = useState('');
 
+  const navigate = useNavigate();
   const { meetupTitle } = useParams();
   const { currentUser } = useContext(AuthContext);
 
@@ -164,6 +165,10 @@ function Detail() {
   };
 
   //* -------------------------------------------------------------
+  const handleBack = () => {
+    navigate(-1); // 뒤로 가기
+  };
+
   return (
     <>
       {isLoading && <LoadingSpinner src={loading} alt="로딩 중" />}
@@ -171,10 +176,8 @@ function Detail() {
         <DetailWrapper>
           <DetailImageContainer>
             <img src={selectedMeetup.photoURL} alt="" />
-            <BackButton>
-              <Link to="/community">
-                <BackArrow size={30} />
-              </Link>
+            <BackButton onClick={handleBack}>
+              <BackArrow size={30} />
             </BackButton>
           </DetailImageContainer>
           <DetailContainer>
