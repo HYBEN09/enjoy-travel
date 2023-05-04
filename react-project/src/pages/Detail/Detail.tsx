@@ -17,12 +17,8 @@ import {
   getDocs,
   updateDoc,
   doc,
-  setDoc,
   getDoc,
 } from '@firebase/firestore';
-import { auth } from '@/firebase/auth';
-import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
 import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { db } from '@/firebase/firestore';
@@ -30,11 +26,13 @@ import { useParams } from 'react-router-dom';
 import { BsPencilSquare } from 'react-icons/bs';
 import loading from '/public/assets/loading.svg';
 import { AuthContext } from '@/context/AuthContext';
-import { LoadingSpinner } from '@/styles/LoadingStyled';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
+import { LoadingSpinner } from '@/styles/LoadingStyled';
 
 function Detail() {
   const [liked, setLiked] = useState(false);
+  const [likedBy, setLikedBy] = useState({});
   const [reviewUid, setReviewUid] = useState('');
   const [expanded, setExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -89,43 +87,31 @@ function Detail() {
   //* -------------------------------------------------------------
   const handleLike = async () => {
     if (!selectedMeetup) return;
-    setLiked((liked) => !liked);
+    const userId = currentUser.uid;
 
-    // 현재 로그인한 사용자의 uid 가져오기
-    const userId = auth.currentUser.uid;
+    setLiked(!liked);
+    setLikedBy((prevLikedBy: any) => {
+      if (liked) {
+        const { [userId]: _, ...newLikedBy } = prevLikedBy;
+        return newLikedBy;
+      } else {
+        return { ...prevLikedBy, [userId]: true };
+      }
+    });
 
-    // meetups 컬렉션에서 해당 meetup 찾기
     const meetupRef = collection(db, 'meetups');
     const meetupSnapshot = await getDocs(meetupRef);
     const meetupId = meetupSnapshot.docs.find(
       (doc) => doc.data().title === meetupTitle
     ).id;
 
-    // meetups 컬렉션에서 해당 meetup의 liked 값을 업데이트
-    await updateDoc(doc(meetupRef, meetupId), { liked: !liked });
-
-    // userliked 컬렉션에서 해당 사용자의 데이터 가져오기
-    const userLikedRef = collection(db, 'userliked');
-    const userLikedSnapshot = await getDocs(userLikedRef);
-    const userLikedDoc = userLikedSnapshot.docs.find(
-      (doc) => doc.id === userId
-    );
-
-    // userliked 컬렉션에서 해당 사용자의 데이터가 없으면 새로운 데이터를 추가
-    if (!userLikedDoc) {
-      await setDoc(doc(userLikedRef, userId), { likedMeetups: [meetupId] });
-    } else {
-      const likedMeetups = userLikedDoc.data().likedMeetups || [];
-      const updatedLikedMeetups = liked
-        ? likedMeetups.filter((id) => id !== meetupId)
-        : [...likedMeetups, meetupId];
-
-      await updateDoc(doc(userLikedRef, userId), {
-        likedMeetups: updatedLikedMeetups,
-      });
-    }
+    await updateDoc(doc(meetupRef, meetupId), {
+      liked: !liked,
+      likedBy: !liked
+        ? { ...likedBy, [userId]: true }
+        : { ...likedBy, [userId]: false },
+    });
   };
-
   //* -------------------------------------------------------------
 
   const handleEdit = () => {
