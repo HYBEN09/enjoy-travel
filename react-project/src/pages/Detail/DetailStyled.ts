@@ -119,3 +119,23 @@ export const EditButton = styled.div`
     color: var(--blue-700);
   }
 `;
+
+export const EditFields = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  textarea {
+    height: 10rem;
+  }
+`;

@@ -1,12 +1,13 @@
 /* eslint-disable react/no-children-prop */
-import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 import { db } from '@/firebase/firestore';
 import Card from '@/components/Card/Card';
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import loading from '/public/assets/loading.svg';
+import { AuthContext } from '@/context/AuthContext';
 import { LoadingSpinner } from '@/styles/LoadingStyled';
+import { useState, useEffect, useContext } from 'react';
 import { collection, getDocs, where, query } from '@firebase/firestore';
 
 function Liked() {
@@ -15,28 +16,31 @@ function Liked() {
   const [isLoading, setIsLoading] = useState(true);
   const [likedMeetups, setLikedMeetups] = useState([]);
   const [selectedMeetup, setSelectedMeetup] = useState(null);
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchLikedMeetups = async () => {
       try {
         const likedMeetupsQuery = query(
           collection(db, 'meetups'),
-          where('liked', '==', true)
+          where('likedBy.' + currentUser.uid, '==', true)
         );
 
         const likedMeetupsSnapshot = await getDocs(likedMeetupsQuery);
-
         const likedMeetupsData = likedMeetupsSnapshot.docs.map((doc) =>
           doc.data()
         );
-        setLikedMeetups(likedMeetupsData);
+
         setIsLoading(false);
+        setLikedMeetups(likedMeetupsData);
       } catch (error) {
         console.error('Error fetching liked meetups: ', error);
+        setIsLoading(true);
       }
     };
+
     fetchLikedMeetups();
-  }, []);
+  }, [currentUser]);
 
   const handleCardClick = (meetupTitle, meetup) => {
     setSelectedMeetup(meetup);

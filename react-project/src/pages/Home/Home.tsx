@@ -2,6 +2,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { Input } from '@/components/Input/Input';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { CardList } from '@/components/CardList/CardList';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { WeatherInformation } from '@/components/WeatherInformation/WeatherInformation';
 
@@ -53,6 +54,7 @@ export default function Home() {
           </button>
         </InputWrapper>
         {weatherData && <WeatherInformation weatherData={weatherData} />}
+        <CardList />
       </HomeWrapper>
     </>
   );
