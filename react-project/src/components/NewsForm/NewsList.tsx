@@ -9,6 +9,7 @@ export default function NewsList() {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [displayedArticles, setDisplayedArticles] = useState([]);
   const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
   const handleScroll = () => {
@@ -16,13 +17,7 @@ export default function NewsList() {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
 
-    console.log('스크롤 이벤트 발생');
-    console.log(clientHeight);
-    console.log(scrollTop);
-    console.log(scrollHeight);
-
     if (scrollTop + clientHeight >= scrollHeight - 1) {
-      console.log('페이지 끝에 스크롤이 닿았음');
       setPage((prev) => prev + 1);
     }
   };
@@ -31,7 +26,7 @@ export default function NewsList() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}&page=${page}`
+        `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${API_KEY}&page=${page}`
       );
       setArticles(response.data.articles);
     } catch {
@@ -41,7 +36,6 @@ export default function NewsList() {
   };
 
   useEffect(() => {
-    console.log('page ? ', page);
     getRandomImageThenSet();
   }, [page]);
 
@@ -52,27 +46,23 @@ export default function NewsList() {
     };
   }, []);
 
-  // 대기 중일 때
-  if (loading) {
-    return (
-      <NewsListBlock>
-        <LoadingSpinner src={loadingImg} alt="로딩 중" />
-      </NewsListBlock>
-    );
-  }
-
-  // 아직 articles 값이 설정되지 않았을 때
-  if (!articles) {
-    return null;
-  }
+  useEffect(() => {
+    if (articles) {
+      const startIndex = (page - 1) * 10;
+      const endIndex = startIndex + 10;
+      setDisplayedArticles((prevArticles) => [
+        ...prevArticles,
+        ...articles.slice(startIndex, endIndex),
+      ]);
+    }
+  }, [articles, page]);
 
   return (
-    <>
-      <NewsListBlock>
-        {articles?.map((article) => (
-          <NewsItem key={article.url} article={article} />
-        ))}
-      </NewsListBlock>
-    </>
+    <NewsListBlock onScroll={handleScroll}>
+      {displayedArticles?.map((article) => (
+        <NewsItem key={article.url} article={article} />
+      ))}
+      {loading && <LoadingSpinner src={loadingImg} alt="로딩 중" />}
+    </NewsListBlock>
   );
 }
