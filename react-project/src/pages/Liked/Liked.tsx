@@ -24,6 +24,12 @@ function Liked() {
   useEffect(() => {
     const fetchLikedMeetups = async () => {
       try {
+        if (!currentUser) {
+          alert('로그인이 필요합니다.');
+          navigate('/signup');
+          return;
+        }
+
         const likedMeetupsQuery = query(
           collection(db, 'meetups'),
           where('likedBy.' + currentUser.uid, '==', true)
