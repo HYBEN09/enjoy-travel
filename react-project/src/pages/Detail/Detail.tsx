@@ -51,7 +51,6 @@ function Detail() {
       try {
         setIsLoading(true);
 
-        // Firestore에서 meetups 컬렉션의 데이터 가져오기
         const meetupsSnapshot = await getDocs(collection(db, 'meetups'));
         const meetupsData = meetupsSnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -65,10 +64,10 @@ function Detail() {
         );
 
         if (meetup) {
-          // meetup이 존재하는 경우에만 setSelectedMeetup을 호출.
           setSelectedMeetup({ ...meetup.data, id: meetup.id });
           setLiked(meetup.data.liked || false);
           setReviewUid(meetup.data.uid);
+          setLikedBy(meetup.data.likedBy || {});
         }
 
         setIsLoading(false);
@@ -89,29 +88,31 @@ function Detail() {
     if (!selectedMeetup) return;
     const userId = currentUser.uid;
 
-    setLiked(!liked);
-    setLikedBy((prevLikedBy: any) => {
-      if (liked) {
-        const { [userId]: _, ...newLikedBy } = prevLikedBy;
-        return newLikedBy;
-      } else {
-        return { ...prevLikedBy, [userId]: true };
-      }
-    });
-
     const meetupRef = collection(db, 'meetups');
     const meetupSnapshot = await getDocs(meetupRef);
+    const meetupData = meetupSnapshot.docs
+      .find((doc) => doc.data().title === meetupTitle)
+      .data();
     const meetupId = meetupSnapshot.docs.find(
       (doc) => doc.data().title === meetupTitle
     ).id;
 
+    const { liked: serverLiked, likedBy: serverLikedBy } = meetupData;
+
+    const newLiked = !serverLiked;
+    const newLikedBy = newLiked
+      ? { ...serverLikedBy, [userId]: true }
+      : { ...serverLikedBy, [userId]: false };
+
+    setLiked(newLiked);
+    setLikedBy(newLikedBy); // likedBy 값을 업데이트
+
     await updateDoc(doc(meetupRef, meetupId), {
-      liked: !liked,
-      likedBy: !liked
-        ? { ...likedBy, [userId]: true }
-        : { ...likedBy, [userId]: false },
+      liked: newLiked,
+      likedBy: newLikedBy,
     });
   };
+
   //* -------------------------------------------------------------
 
   const handleEdit = () => {
@@ -171,7 +172,7 @@ function Detail() {
             <TitleContainer>
               <h2>{selectedMeetup.title}</h2>
               <button onClick={handleLike}>
-                {liked ? <FaHeart /> : <FiHeart />}
+                {likedBy[currentUser.uid] ? <FaHeart /> : <FiHeart />}
               </button>
             </TitleContainer>
             {isEditing ? (
