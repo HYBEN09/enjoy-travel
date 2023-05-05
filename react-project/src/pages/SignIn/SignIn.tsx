@@ -1,26 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-unused-vars */
-import Button from '@/components/Button/Button';
-import { useState, useRef } from 'react';
 import styled from 'styled-components';
+import { auth } from '@/firebase/auth';
+import { useState, useRef } from 'react';
+import { provider } from '@/firebase/app';
+import AppleLogo from '/public/AppleLogo.svg';
+import { AiOutlineEye } from 'react-icons/ai';
+import Button from '@/components/Button/Button';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { AiFillCheckCircle } from 'react-icons/ai';
-import { AiOutlineEye } from 'react-icons/ai';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { RiErrorWarningLine } from 'react-icons/ri';
-import GoogleLogo from '/public/GoogleLogo.svg';
 import FaceBookLogo from '/public/FaceBookLogo.svg';
-import AppleLogo from '/public/AppleLogo.svg';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  GoogleAuthProvider,
-  signInWithRedirect,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-} from '@firebase/auth';
-import { auth } from '@/firebase/auth';
-import { provider } from '@/firebase/app';
+import { GoogleButton } from '@/components/Button/GoogleButton';
+import { signInWithPopup, signInWithEmailAndPassword } from '@firebase/auth';
 
 type SignInFormData = {
   email: string;
@@ -48,7 +43,6 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
     } else {
       alert('⚠️ 아이디 혹은 비밀번호가 올바르지 않습니다. 다시 작성하세요.');
     }
-    //onSubmit(formData);
 
     try {
       const curUserInfo = await signInWithEmailAndPassword(
@@ -89,12 +83,6 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
 
   const handleShowPW = () => {
     setShowPassword(!showPassword);
-  };
-
-  const handleGoogleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
-    navigate('/');
   };
 
   const handleFacebookSignIn = () => {
@@ -155,9 +143,7 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
       <SignInFooter>
         <span>Or Log In With</span>
         <SocialLogin>
-          <button onClick={handleGoogleSignIn}>
-            <img src={GoogleLogo} alt="구글" />
-          </button>
+          <GoogleButton />
           <button onClick={handleFacebookSignIn}>
             <img src={FaceBookLogo} alt="페이스북" />
           </button>
