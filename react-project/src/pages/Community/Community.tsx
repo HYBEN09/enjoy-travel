@@ -1,7 +1,9 @@
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { MeetupCard } from '@/components/MeetupCard/MeetupCard';
 import { CommunityContent, CommunityWrapper } from './CommunityStyled';
 
 function Community() {
+  useDocumentTitle('여행 후기');
   return (
     <>
       <CommunityWrapper>

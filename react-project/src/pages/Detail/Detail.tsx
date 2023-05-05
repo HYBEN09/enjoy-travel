@@ -29,8 +29,11 @@ import { AuthContext } from '@/context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { LoadingSpinner } from '@/styles/LoadingStyled';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 function Detail() {
+  useDocumentTitle('여행 후기 상세 페이지');
+
   const [liked, setLiked] = useState(false);
   const [likedBy, setLikedBy] = useState({});
   const [reviewUid, setReviewUid] = useState('');

@@ -9,8 +9,11 @@ import { AuthContext } from '@/context/AuthContext';
 import { LoadingSpinner } from '@/styles/LoadingStyled';
 import { useState, useEffect, useContext } from 'react';
 import { collection, getDocs, where, query } from '@firebase/firestore';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 function Liked() {
+  useDocumentTitle('좋아요 한 후기들');
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);

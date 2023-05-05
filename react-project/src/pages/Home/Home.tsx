@@ -5,12 +5,15 @@ import { CardList } from '@/components/CardList/CardList';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { HomeSubTitle, HomeWrapper, InputWrapper } from './HomeStyled';
 import { WeatherInformation } from '@/components/WeatherInformation/WeatherInformation';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState(null);
   const [location, setLocation] = useState('');
+
+  useDocumentTitle('홈');
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);

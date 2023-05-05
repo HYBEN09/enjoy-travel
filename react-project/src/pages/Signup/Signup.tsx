@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { auth } from '@/firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 type SignupFormData = {
   username: string;
@@ -26,6 +27,8 @@ type SignupFormData = {
 };
 
 const SignupForm = () => {
+  useDocumentTitle('회원가입');
+
   const [formData, setFormData] = useState<SignupFormData>({
     username: '',
     email: '',
