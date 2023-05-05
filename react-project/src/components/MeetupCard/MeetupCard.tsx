@@ -15,6 +15,9 @@ export function MeetupCard() {
   useEffect(() => {
     const fetchMeetupsData = async () => {
       const meetupsData = await fetchMeetups();
+
+      meetupsData.sort((a, b) => b.createdAt - a.createdAt);
+
       setMeetups(meetupsData);
       setIsLoading(false);
     };
