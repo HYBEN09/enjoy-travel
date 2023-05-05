@@ -1,9 +1,9 @@
 import axios from 'axios';
-import styled from 'styled-components';
 import { Input } from '@/components/Input/Input';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { CardList } from '@/components/CardList/CardList';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { HomeSubTitle, HomeWrapper, InputWrapper } from './HomeStyled';
 import { WeatherInformation } from '@/components/WeatherInformation/WeatherInformation';
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
@@ -18,7 +18,8 @@ export default function Home() {
       setWeatherData(null);
     }
   };
-  const handleSearchClick = async () => {
+
+  const handleWeatherSearch = async () => {
     try {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`
@@ -32,7 +33,7 @@ export default function Home() {
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      handleSearchClick();
+      handleWeatherSearch();
     }
   };
 
@@ -49,7 +50,7 @@ export default function Home() {
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
           />
-          <button type="button" onClick={handleSearchClick}>
+          <button type="button" onClick={handleWeatherSearch}>
             <AiOutlineSearch className="searchIcon" />
           </button>
         </InputWrapper>
@@ -59,29 +60,3 @@ export default function Home() {
     </>
   );
 }
-
-const HomeSubTitle = styled.div`
-  margin-bottom: 1rem;
-  font-weight: 600;
-  color: var(--blue-600);
-`;
-
-const HomeWrapper = styled.div`
-  margin: 1rem;
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 2.5rem;
-
-  .weatherInput {
-    border-radius: 16px;
-  }
-
-  button {
-    position: absolute;
-    right: 30px;
-    font-size: 24px;
-  }
-`;
