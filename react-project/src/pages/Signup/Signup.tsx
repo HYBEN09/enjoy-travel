@@ -14,11 +14,11 @@ import { MdArrowForwardIos } from 'react-icons/md';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { RiErrorWarningLine } from 'react-icons/ri';
-import githubLogo from '/public/assets/githubLogo.svg';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { GoogleButton } from '@/components/Button/GoogleButton';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
-import { FaceBookButton } from '@/components/Button/FaceBookButton';
+import { GoogleButton } from '@/components/Button/SocialLoginButton/GoogleButton';
+import { GithubButton } from '@/components/Button/SocialLoginButton/GithubButton';
+import { FaceBookButton } from '@/components/Button/SocialLoginButton/FaceBookButton';
 
 type SignupFormData = {
   username: string;
@@ -167,9 +167,7 @@ const SignupForm = () => {
         <SocialLogin>
           <GoogleButton />
           <FaceBookButton />
-          <button>
-            <img src={githubLogo} alt="애플" />
-          </button>
+          <GithubButton />
         </SocialLogin>
         <span>
           Have an account?&nbsp;

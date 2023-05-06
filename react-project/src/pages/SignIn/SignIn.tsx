@@ -11,10 +11,10 @@ import { AiFillCheckCircle } from 'react-icons/ai';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { RiErrorWarningLine } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
-import githubLogo from '/public/assets/githubLogo.svg';
 import { signInWithEmailAndPassword } from '@firebase/auth';
-import { GoogleButton } from '@/components/Button/GoogleButton';
-import { FaceBookButton } from '@/components/Button/FaceBookButton';
+import { GoogleButton } from '@/components/Button/SocialLoginButton/GoogleButton';
+import { GithubButton } from '@/components/Button/SocialLoginButton/GithubButton';
+import { FaceBookButton } from '@/components/Button/SocialLoginButton/FaceBookButton';
 
 type SignInFormData = {
   email: string;
@@ -133,9 +133,7 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
         <SocialLogin>
           <GoogleButton />
           <FaceBookButton />
-          <button>
-            <img src={githubLogo} alt="애플" />
-          </button>
+          <GithubButton />
         </SocialLogin>
         <span>
           Newble?&nbsp;
