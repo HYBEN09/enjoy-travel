@@ -4,6 +4,7 @@ export const HomeSubTitle = styled.div`
   margin-bottom: 1rem;
   font-weight: 600;
   color: var(--blue-600);
+  font-size: 1.5em;
 `;
 
 export const HomeWrapper = styled.div`
