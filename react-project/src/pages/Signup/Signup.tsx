@@ -8,17 +8,17 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { AiOutlineEye } from 'react-icons/ai';
-import AppleLogo from '/public/AppleLogo.svg';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/Button/Button';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { RiErrorWarningLine } from 'react-icons/ri';
-import FaceBookLogo from '/public/FaceBookLogo.svg';
+import githubLogo from '/public/assets/githubLogo.svg';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { GoogleButton } from '@/components/Button/GoogleButton';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
+import { FaceBookButton } from '@/components/Button/FaceBookButton';
 
 type SignupFormData = {
   username: string;
@@ -166,11 +166,9 @@ const SignupForm = () => {
         <span>Or Sign Up With</span>
         <SocialLogin>
           <GoogleButton />
+          <FaceBookButton />
           <button>
-            <img src={FaceBookLogo} alt="페이스북" />
-          </button>
-          <button>
-            <img src={AppleLogo} alt="애플" />
+            <img src={githubLogo} alt="애플" />
           </button>
         </SocialLogin>
         <span>
@@ -235,7 +233,7 @@ const NotShowingPW = styled(AiFillEyeInvisible)`
 `;
 
 const SignupWrapper = styled.div`
-  background: url('/public/SignUpBg.png') no-repeat;
+  background: url('/public/assets/SignUpBg.png') no-repeat;
   background-size: 100% 270px;
   padding-top: 250px;
   position: relative;

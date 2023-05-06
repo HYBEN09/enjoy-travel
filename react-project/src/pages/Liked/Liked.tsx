@@ -1,5 +1,4 @@
 /* eslint-disable react/no-children-prop */
-import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { db } from '@/firebase/firestore';
 import Card from '@/components/Card/Card';
@@ -8,8 +7,9 @@ import loading from '/public/assets/loading.svg';
 import { AuthContext } from '@/context/AuthContext';
 import { LoadingSpinner } from '@/styles/LoadingStyled';
 import { useState, useEffect, useContext } from 'react';
-import { collection, getDocs, where, query } from '@firebase/firestore';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { collection, getDocs, where, query } from '@firebase/firestore';
+import { LikedContent, LikedNoContent, LikedWrapper } from './LikedStyled';
 
 function Liked() {
   useDocumentTitle('좋아요 한 후기들');
@@ -24,6 +24,12 @@ function Liked() {
   useEffect(() => {
     const fetchLikedMeetups = async () => {
       try {
+        if (!currentUser) {
+          alert('로그인이 필요합니다.');
+          navigate('/signup');
+          return;
+        }
+
         const likedMeetupsQuery = query(
           collection(db, 'meetups'),
           where('likedBy.' + currentUser.uid, '==', true)
@@ -71,33 +77,5 @@ function Liked() {
     </LikedWrapper>
   );
 }
-
-const LikedWrapper = styled.div`
-  padding-left: 3px;
-  padding-right: 5px;
-  margin: 1rem 0 90px 8px;
-
-  h2 {
-    font-size: 30px;
-    color: var(--primary);
-    margin-top: 1rem;
-  }
-`;
-
-const LikedContent = styled.p`
-  font-weight: 600;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  color: var(--gray-800);
-`;
-
-const LikedNoContent = styled.p`
-  font-weight: 600;
-  font-size: 32px;
-  margin-top: 1rem;
-  text-align: center;
-  line-height: 500px;
-  color: var(--secondary);
-`;
 
 export default Liked;

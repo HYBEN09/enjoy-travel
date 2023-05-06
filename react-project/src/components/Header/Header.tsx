@@ -10,10 +10,10 @@ import {
   NavLogo,
   NavWrapper,
 } from './HeaderStyled';
+import { auth } from '@/firebase/auth';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import mainLogo from '/public/logo.png';
-import { auth } from '@/firebase/auth';
+import mainLogo from '/public/assets/logo.png';
 import { handleSignOut } from '@/utils/signOut';
 
 export const Header: React.FC = () => {
