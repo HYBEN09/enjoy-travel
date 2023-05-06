@@ -1,9 +1,19 @@
 import axios from 'axios';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { Input } from '@/components/Input/Input';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { CardList } from '@/components/CardList/CardList';
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
-import { HomeSubTitle, HomeWrapper, InputWrapper } from './HomeStyled';
+import {
+  CountryCard,
+  CountryCardWrapper,
+  CountryInfoWrapper,
+  HomeSubTitle,
+  HomeWrapper,
+  InputWrapper,
+} from './HomeStyled';
 import { WeatherInformation } from '@/components/WeatherInformation/WeatherInformation';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
@@ -89,6 +99,7 @@ export default function Home() {
       })
       .catch((error) => {
         console.log('Error:', error);
+        alert('다시 영어로 입력해주세요 😢');
       });
   }, []);
 
@@ -116,37 +127,11 @@ export default function Home() {
   return (
     <>
       <HomeWrapper>
-        <HomeSubTitle>Countries</HomeSubTitle>
-        <Input
-          type={'text'}
-          placeholder={'Search for country information in English.'}
-          className="CountryInformationInput"
-          value={search}
-          onChange={handleSearch}
-        />
-        {filteredCountries.length === 0 ? (
-          <p>No matching countries found.</p>
-        ) : (
-          <div>
-            {filteredCountries.map((country) => (
-              <div key={country.name}>
-                <img src={country.flag} alt={`${country.name} flag`} />
-                <p>{country.name}</p>
-                <p>Capital: {country.capital}</p>
-                <p>Languages: {country.languages}</p>
-                <p>Population: {country.population}</p>
-                <p>Region: {country.region}</p>
-                <p>Timezones: {country.timezones}</p>
-                <p>Currencies: {country.currencies}</p>
-              </div>
-            ))}
-          </div>
-        )}
-        <HomeSubTitle>Enjoy Travel</HomeSubTitle>
+        <HomeSubTitle>How is the Weather?</HomeSubTitle>
         <InputWrapper>
           <Input
             type={'text'}
-            placeholder={'여행지의 날씨를 검색 해보세요.'}
+            placeholder={"Search for country's weather in English."}
             className="weatherInput"
             value={location}
             onChange={handleInputChange}
@@ -158,7 +143,68 @@ export default function Home() {
         </InputWrapper>
         {weatherData && <WeatherInformation weatherData={weatherData} />}
         <CardList />
+        <CountryInfoWrapper>
+          <HomeSubTitle>All about Countries</HomeSubTitle>
+          <InputWrapper>
+            <Input
+              type={'text'}
+              placeholder={'Search for country information in English.'}
+              className="CountryInformationInput"
+              value={search}
+              onChange={handleSearch}
+            />
+          </InputWrapper>
+          {filteredCountries.length === 0 ? (
+            <h3>⚠️ No matching countries found.</h3>
+          ) : (
+            <CountryCardWrapper tabIndex={0}>
+              <Slider {...settings}>
+                {filteredCountries.map((country) => (
+                  <CountryCard key={country.name}>
+                    <img src={country.flag} alt={`${country.name} flag`} />
+                    <h2>{country.name}</h2>
+                    <p>Capital: {country.capital}</p>
+                    <p>Languages: {country.languages}</p>
+                    <p>Population: {country.population}</p>
+                    <p>Region: {country.region}</p>
+                    <p>Timezones: {country.timezones}</p>
+                    <p>Currencies: {country.currencies}</p>
+                  </CountryCard>
+                ))}
+              </Slider>
+            </CountryCardWrapper>
+          )}
+        </CountryInfoWrapper>
       </HomeWrapper>
     </>
   );
 }
+
+const settings = {
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  accessibility: true, // 키보드 이벤트 활성화
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 1,
+      },
+    },
+  ],
+};

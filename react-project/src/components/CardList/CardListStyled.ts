@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CardTitle = styled.h2`
-  margin-top: 5rem;
+  margin-top: 2.5rem;
   margin-left: 3px;
   color: var(--primary);
 `;
@@ -12,11 +12,11 @@ export const CardWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 
   img {
     width: 100%;
-    height: 400px;
+    height: 270px;
     object-fit: cover;
   }
   p {
