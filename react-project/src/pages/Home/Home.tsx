@@ -57,6 +57,7 @@ export default function Home() {
             ? country.population.toLocaleString()
             : 'N/A';
           const region = country.region ? country.region : 'N/A';
+          const subregion = country.subregion ? country.subregion : 'N/A';
           const timezones = country.timezones
             ? country.timezones.join(', ')
             : 'N/A';
@@ -72,20 +73,20 @@ export default function Home() {
             languages,
             population,
             region,
+            subregion,
             timezones,
             currencies,
           };
         });
         setCountries(countriesData);
+        // 랜덤으로 5개 선택하여 초기 검색결과로 보여줌
+        const randomCountries = countriesData
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 5)
+          .map((country) => country.name);
         setFilteredCountries(
           countriesData.filter((country) =>
-            [
-              'United States',
-              'United Kingdom',
-              'Spain',
-              'Japan',
-              'China',
-            ].includes(country.name)
+            randomCountries.includes(country.name)
           )
         );
       })
@@ -97,25 +98,11 @@ export default function Home() {
   const handleSearch = (event) => {
     const value = event.target.value;
     setSearch(value);
-    if (value === '') {
-      setFilteredCountries(
-        countries.filter((country) =>
-          [
-            'United States',
-            'United Kingdom',
-            'Spain',
-            'Japan',
-            'China',
-          ].includes(country.name)
-        )
-      );
-    } else {
-      setFilteredCountries(
-        countries.filter((country) =>
-          country.name.toLowerCase().includes(value.toLowerCase())
-        )
-      );
-    }
+    setFilteredCountries(
+      countries.filter((country) =>
+        country.name.toLowerCase().includes(value.toLowerCase())
+      )
+    );
   };
 
   return (
@@ -125,7 +112,7 @@ export default function Home() {
         <Input
           type={'text'}
           placeholder={'Search for country information in English.'}
-          className="weatherInput"
+          className="CountryInformationInput"
           value={search}
           onChange={handleSearch}
         />
@@ -141,6 +128,7 @@ export default function Home() {
                 <p>Languages: {country.languages}</p>
                 <p>Population: {country.population}</p>
                 <p>Region: {country.region}</p>
+                <p>Subregion: {country.subregion}</p>
                 <p>Timezones: {country.timezones}</p>
                 <p>Currencies: {country.currencies}</p>
               </div>
