@@ -185,6 +185,7 @@ const SignInWrapper = styled.div`
   background-size: 100% 305px;
   background-position: 0-6%;
   padding-top: 250px;
+  margin-bottom: 2rem;
 
   h2 {
     display: flex;
