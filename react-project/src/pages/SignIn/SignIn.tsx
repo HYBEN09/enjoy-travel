@@ -4,7 +4,6 @@
 import styled from 'styled-components';
 import { auth } from '@/firebase/auth';
 import { useState, useRef } from 'react';
-import { provider } from '@/firebase/app';
 import { AiOutlineEye } from 'react-icons/ai';
 import Button from '@/components/Button/Button';
 import { MdArrowForwardIos } from 'react-icons/md';
@@ -13,9 +12,9 @@ import { AiFillEyeInvisible } from 'react-icons/ai';
 import { RiErrorWarningLine } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
 import githubLogo from '/public/assets/githubLogo.svg';
-import FaceBookLogo from '/public/assets/FaceBookLogo.svg';
+import { signInWithEmailAndPassword } from '@firebase/auth';
 import { GoogleButton } from '@/components/Button/GoogleButton';
-import { signInWithPopup, signInWithEmailAndPassword } from '@firebase/auth';
+import { FaceBookButton } from '@/components/Button/FaceBookButton';
 
 type SignInFormData = {
   email: string;
@@ -85,17 +84,6 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
     setShowPassword(!showPassword);
   };
 
-  const handleFacebookSignIn = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log('페이스북 로그인', result.user);
-        navigate('/');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   return (
     <SignInWrapper>
       <SignInContainer onSubmit={handleSubmit}>
@@ -144,9 +132,7 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
         <span>Or Log In With</span>
         <SocialLogin>
           <GoogleButton />
-          <button onClick={handleFacebookSignIn}>
-            <img src={FaceBookLogo} alt="페이스북" />
-          </button>
+          <FaceBookButton />
           <button>
             <img src={githubLogo} alt="애플" />
           </button>

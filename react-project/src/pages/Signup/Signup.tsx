@@ -15,10 +15,10 @@ import { AiFillCheckCircle } from 'react-icons/ai';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { RiErrorWarningLine } from 'react-icons/ri';
 import githubLogo from '/public/assets/githubLogo.svg';
-import FaceBookLogo from '/public/assets/FaceBookLogo.svg';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { GoogleButton } from '@/components/Button/GoogleButton';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
+import { FaceBookButton } from '@/components/Button/FaceBookButton';
 
 type SignupFormData = {
   username: string;
@@ -166,9 +166,7 @@ const SignupForm = () => {
         <span>Or Sign Up With</span>
         <SocialLogin>
           <GoogleButton />
-          <button>
-            <img src={FaceBookLogo} alt="페이스북" />
-          </button>
+          <FaceBookButton />
           <button>
             <img src={githubLogo} alt="애플" />
           </button>
