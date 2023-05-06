@@ -235,6 +235,7 @@ const SignupWrapper = styled.div`
   background-size: 100% 270px;
   padding-top: 250px;
   position: relative;
+  margin-bottom: 2rem;
 
   h2 {
     display: flex;
