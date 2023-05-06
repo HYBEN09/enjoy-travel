@@ -52,19 +52,29 @@ export const CountryCard = styled.div`
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 1rem;
+  height: 550px;
+  overflow: hidden;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px;
 
   img {
     width: 100%;
-    height: 150px;
+    height: 180px;
     object-fit: cover;
+    border: 0.5px solid #ccc;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
   }
 
   h2 {
     text-align: center;
+    padding: 1rem;
   }
 
   p {
