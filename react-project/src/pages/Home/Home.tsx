@@ -70,9 +70,11 @@ export default function Home() {
           const timezones = country.timezones
             ? country.timezones.join(', ')
             : 'N/A';
+
           const currencies = country.currencies
             ? Object.entries(country.currencies).map(
-                ([key, value]) => `${key} (${value.name} - ${value.symbol})`
+                ([key, value]: [string, { name: string; symbol: string }]) =>
+                  `${key} (${value.name} - ${value.symbol})`
               )
             : 'N/A';
           return {
