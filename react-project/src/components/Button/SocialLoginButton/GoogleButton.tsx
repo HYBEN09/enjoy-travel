@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import GoogleLogo from '/public/assets/GoogleLogo.svg';
 import { GoogleAuthProvider, signInWithRedirect } from '@firebase/auth';
 
-export function GoogleButton() {
+export default function GoogleButton() {
   const navigate = useNavigate();
 
   const handleGoogleSignIn = () => {
