@@ -1,20 +1,25 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable no-unused-vars */
-import styled from 'styled-components';
 import { auth } from '@/firebase/auth';
 import { useState, useRef } from 'react';
-import { AiOutlineEye } from 'react-icons/ai';
 import Button from '@/components/Button/Button';
 import { MdArrowForwardIos } from 'react-icons/md';
-import { AiFillCheckCircle } from 'react-icons/ai';
-import { AiFillEyeInvisible } from 'react-icons/ai';
-import { RiErrorWarningLine } from 'react-icons/ri';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from '@firebase/auth';
+
+import {
+  CheckStyle,
+  IconWrapper,
+  NotShowingPW,
+  ShowingPW,
+  SignInContainer,
+  SignInFooter,
+  SignInWrapper,
+  SocialLogin,
+  StyledLink,
+  WarningStyle,
+} from './SignInStyled';
 import { GoogleButton } from '@/components/Button/SocialLoginButton/GoogleButton';
-import { GithubButton } from '@/components/Button/SocialLoginButton/GithubButton';
 import { FaceBookButton } from '@/components/Button/SocialLoginButton/FaceBookButton';
+import { GithubButton } from '@/components/Button/SocialLoginButton/GithubButton';
 
 type SignInFormData = {
   email: string;
@@ -145,132 +150,5 @@ const SignInForm = (/*{ onSubmit }: SignInFormProps*/) => {
     </SignInWrapper>
   );
 };
-
-const CheckStyle = styled(AiFillCheckCircle)`
-  position: absolute;
-  right: 5%;
-  top: 232%;
-  transform: translateY(-50%);
-  color: green;
-`;
-
-const WarningStyle = styled(RiErrorWarningLine)`
-  position: absolute;
-  right: 5%;
-  top: 232%;
-  transform: translateY(-50%);
-  color: red;
-`;
-
-const ShowingPW = styled(AiOutlineEye)`
-  position: absolute;
-  right: 4%;
-  top: 232%;
-  font-size: 1.125rem;
-  transform: translateY(-50%);
-  color: var(--gray-700);
-`;
-
-const NotShowingPW = styled(AiFillEyeInvisible)`
-  position: absolute;
-  right: 4%;
-  top: 232%;
-  font-size: 1.125rem;
-  transform: translateY(-50%);
-  color: var(--gray-700);
-`;
-
-const SignInWrapper = styled.div`
-  background: url('/public/assets/SignInBg.png') no-repeat;
-  background-size: 100% 305px;
-  background-position: 0-6%;
-  padding-top: 250px;
-  margin-bottom: 2rem;
-
-  h2 {
-    display: flex;
-    justify-content: center;
-    padding: 25px 0;
-    font-size: 30px;
-  }
-
-  label {
-    position: relative;
-    margin-bottom: 7px;
-    font-size: 15px;
-  }
-
-  input {
-    padding: 10px;
-    padding-left: 25px;
-    margin-bottom: 20px;
-    border-radius: 100px;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
-    font-size: 1rem;
-  }
-  input::placeholder {
-    color: var(--gray-600);
-    font-size: 0.7rem;
-  }
-`;
-
-const SignInContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid var(--purple-600);
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  padding-bottom: 20px;
-  background: var(--white);
-  padding: 0 30px;
-
-  a {
-    font-size: 11px;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: -10px;
-    margin-right: 8px;
-    margin-bottom: 10px;
-  }
-`;
-
-const IconWrapper = styled.span`
-  vertical-align: middle;
-  padding-left: 10px;
-  font-size: 14px;
-`;
-
-const SignInFooter = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  span {
-    font-size: 10px;
-    display: flex;
-    justify-content: center;
-    padding: 30px 0;
-    font-weight: 600;
-  }
-`;
-
-const StyledLink = styled(Link)`
-  color: var(—accent) !important;
-  &:focus,
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const SocialLogin = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-
-  img {
-    height: 50px;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
-    border-radius: 100%;
-    padding: 15px;
-  }
-`;
 
 export default SignInForm;
