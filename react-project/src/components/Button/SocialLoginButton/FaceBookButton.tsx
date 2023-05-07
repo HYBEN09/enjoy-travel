@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { signInWithPopup } from '@firebase/auth';
 import FaceBookLogo from '/public/assets/FaceBookLogo.svg';
 
-export default function FaceBookButton() {
+export function FaceBookButton() {
   const navigate = useNavigate();
 
   const handleFacebookSignIn = () => {
