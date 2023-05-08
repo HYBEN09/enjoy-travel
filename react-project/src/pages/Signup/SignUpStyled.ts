@@ -56,7 +56,7 @@ export const NotShowingPW = styled(AiFillEyeInvisible)`
 `;
 
 export const SignupWrapper = styled.div`
-  background: url('/public/assets/SignUpBg.svg') no-repeat;
+  background: url('${process.env.PUBLIC_URL}/assets/SignUpBg.png') no-repeat;
   background-size: 100% 270px;
   padding-top: 250px;
   position: relative;
