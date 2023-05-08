@@ -49,7 +49,7 @@ function Liked() {
     };
 
     fetchLikedMeetups();
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   const handleCardClick = (meetupTitle, meetup) => {
     setSelectedMeetup(meetup);
