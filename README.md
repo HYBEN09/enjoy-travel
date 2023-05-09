@@ -122,24 +122,17 @@ _2023. 4. 18 ~ 05.10_
 
 <h2 id="5-페이지별-기능-소개">5. 페이지별 기능 소개 🚀</h2>
 
-<details> 
-<summary> ✈️ HOME 페이지</summary>
-  <br/>
-<div>
- <p> ✅ Weather 인풋창 </p>
- <img src="https://user-images.githubusercontent.com/104710243/236993459-7d14e37b-9046-4f03-b49d-049ad175957c.gif" />
-</div>
-  <br/>
-<div>
- <p> ✅ Popular Country 슬라이더 </p>
- <img src="https://user-images.githubusercontent.com/104710243/236994809-4f4258e8-c308-45f5-93cb-f1765cef4ada.gif" />
-</div>
-
- <br/>
-<div>
- <p> ✅ Country 인풋창  </p>
- <img src="https://user-images.githubusercontent.com/104710243/236994660-12d9a670-0bde-493e-851e-c686a9268dbc.gif" />
-</div>
+<details>
+<summary>✈️ HOME 페이지</summary>
+<br>
+<p>✅ Weather 인풋창</p>
+<img src="https://user-images.githubusercontent.com/104710243/236993459-7d14e37b-9046-4f03-b49d-049ad175957c.gif" />
+<br>
+<p>✅ Popular Country 슬라이더</p>
+<img src="https://user-images.githubusercontent.com/104710243/236994809-4f4258e8-c308-45f5-93cb-f1765cef4ada.gif" />
+<br>
+<p>✅ Country 인풋창</p>
+<img src="https://user-images.githubusercontent.com/104710243/236994660-12d9a670-0bde-493e-851e-c686a9268dbc.gif" />
 </details>
 
 <details> 
