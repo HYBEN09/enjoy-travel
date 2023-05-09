@@ -92,6 +92,7 @@ _2023. 4. 18 ~ 05.10_
 <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
 <img src="https://img.shields.io/badge/netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white">
 </div>
+<br/>
 
 <h2 id="3-collaboration-tools">3. Collaboration Tools 🫂</h2>
 
@@ -101,6 +102,8 @@ _2023. 4. 18 ~ 05.10_
 <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white">
 <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
 </div>
+
+<br/>
 
 <h2 id="4-기술-선정-이유">4. 기술 선정 이유 🧐</h2>
 
@@ -115,6 +118,7 @@ _2023. 4. 18 ~ 05.10_
 - **Style-Component**
   styled-components를 사용하면 컴포넌트 스타일링을 간편하게 할 수 있으며, 재사용성이 높아지고 CSS 클래스 네임 충돌을 방지할 수 있습니다. 또한, Props를 이용한 동적인 스타일링이 가능하고, 테마 기능을 활용하여 전체적인 디자인 시스템을 구성할 수 있습니다.
 
+<br/>
 
 <h2 id="5-페이지별-기능-소개">5. 페이지별 기능 소개 🚀</h2>
 
