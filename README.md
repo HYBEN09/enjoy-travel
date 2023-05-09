@@ -16,15 +16,15 @@ _2023. 4. 18 ~ 05.10_
 
 ### 목차
 
-[1. 역할 분담 👩🏻‍💻](#1.-역할-분담-👩🏻‍💻) <br/>
-[2. 기술스택 🛠️](#2.-기술스택-🛠️) <br/>
-[3. Collaboration Tools 🫂](#3.-Collaboration-Tools-🫂) <br/>
-[4. 기술 선정 이유 🧐](#4.-기술-선정-이유-🧐) <br/>
-[5. 페이지별 기능 소개 🚀](#5.페이지별-기능-소개🚀) <br/>
-[6. 프로젝트 사용법 ⭐️](#6.-프로젝트-사용법-⭐️) <br/>
-[7. 피그마 시안 🌈](#7.-피그마-시안-🌈)
+[1. 역할 분담 👩🏻‍💻](#1-역할-분담)<br/>
+[2. 기술스택 🛠️](#2-기술스택)<br/>
+[3. Collaboration Tools 🫂](#3-collaboration-tools)<br/>
+[4. 기술 선정 이유 🧐](#4-기술-선정-이유)<br/>
+[5. 페이지별 기능 소개 🚀](#5-페이지별-기능-소개)<br/>
+[6. 프로젝트 사용법 ⭐️](#6-프로젝트-사용법)<br/>
+[7. 피그마 시안 🌈](#7-피그마-시안)<br/>
 
-### 1. 역할 분담 👩🏻‍💻
+<h2 id="1-역할-분담">1. 역할 분담 👩🏻‍💻</h2>
 
 ✈️ **김서현**
 
@@ -73,7 +73,7 @@ _2023. 4. 18 ~ 05.10_
 
 <br/>
 
-### 2. 기술스택 🛠️
+<h2 id="2-기술스택">2. 기술스택 🛠️</h2>
 
 <div>
 <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
@@ -92,8 +92,9 @@ _2023. 4. 18 ~ 05.10_
 <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
 <img src="https://img.shields.io/badge/netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white">
 </div>
+<br/>
 
-### 3. Collaboration Tools 🫂
+<h2 id="3-collaboration-tools">3. Collaboration Tools 🫂</h2>
 
 <div>
 <img src="https://img.shields.io/badge/Bitbucket-0052CC?style=for-the-badge&logo=bitbucket&logoColor=white">
@@ -102,7 +103,9 @@ _2023. 4. 18 ~ 05.10_
 <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
 </div>
 
-### 4. 기술 선정 이유 🧐
+<br/>
+
+<h2 id="4-기술-선정-이유">4. 기술 선정 이유 🧐</h2>
 
 - **Vite**
   vite는 CRA에 비해 개발 환경에서 더 빠른 성능을 제공하며, 빌드 성능도 향상되어 더 빠르게 개발을 할 수 있습니다.
@@ -115,17 +118,87 @@ _2023. 4. 18 ~ 05.10_
 - **Style-Component**
   styled-components를 사용하면 컴포넌트 스타일링을 간편하게 할 수 있으며, 재사용성이 높아지고 CSS 클래스 네임 충돌을 방지할 수 있습니다. 또한, Props를 이용한 동적인 스타일링이 가능하고, 테마 기능을 활용하여 전체적인 디자인 시스템을 구성할 수 있습니다.
 
-### 5. 페이지별 기능 소개 🚀
+<br/>
+
+<h2 id="5-페이지별-기능-소개">5. 페이지별 기능 소개 🚀</h2>
 
 <details> 
-<summary> ✈️ HOME </summary>
-<ul>
-<li>
-<span> 날씨 인풋창 </span>
-</li>
-</ul>
+<summary> ✈️ HOME 페이지</summary>
+  <br/>
+<div>
+ <p> ✅ Weather 인풋창 </p>
+ <img src="https://user-images.githubusercontent.com/104710243/236993459-7d14e37b-9046-4f03-b49d-049ad175957c.gif" />
+</div>
+  <br/>
+<div>
+ <p> ✅ Popular Country 슬라이더 </p>
+ <img src="https://user-images.githubusercontent.com/104710243/236994809-4f4258e8-c308-45f5-93cb-f1765cef4ada.gif" />
+</div>
+
+ <br/>
+<div>
+ <p> ✅ Country 인풋창  </p>
+ <img src="https://user-images.githubusercontent.com/104710243/236994660-12d9a670-0bde-493e-851e-c686a9268dbc.gif" />
+</div>
 </details>
 
-### 6. 프로젝트 사용법 ⭐️
+<details> 
+<summary> ✈️ 회원가입 페이지</summary>
+  <br/>
+<div>
+ <p> ✅ 이메일 회원가입 </p>
+ <img src="https://user-images.githubusercontent.com/104710243/236995974-f1f8408a-1b48-46b4-9b9d-ac64f014f186.gif" />
+</div>
+  
+</details>
 
-### 7. 피그마 시안 🌈
+<details> 
+  <summary> ✈️ 로그인 페이지</summary>
+    <br/>
+  <div>
+    <p> ✅ 이메일 로그인 </p>
+    <img src="https://user-images.githubusercontent.com/104710243/236996339-317f04d7-9236-45b5-ab03-8c99530d742f.gif" />
+  </div>
+</details>
+
+<details> 
+  <summary> ✈️ 리뷰 페이지</summary>
+    <br/>
+  <div>
+    <p> ✅ 리뷰 작성 </p>
+    <img src="https://user-images.githubusercontent.com/104710243/236997042-b6739f88-4127-4eae-aa24-ccb349db62bb.gif" />
+  </div>
+
+</details>
+
+<details> 
+  <summary> ✈️ 상세 후기 페이지</summary>
+    <br/>
+  <div>
+    <p> ✅ 상세 후기 </p>
+    <img src="https://user-images.githubusercontent.com/104710243/236997581-b0d1e3da-78a9-472a-93b6-c53618655202.gif" />
+  </div>
+</details>
+
+<details> 
+  <summary> ✈️ 좋아요 페이지 </summary>
+    <br/>
+  <div>
+    <p> ✅ 좋아요 기능 </p>
+    <img src="https://user-images.githubusercontent.com/104710243/236998050-947f45cb-f50e-4735-beed-f59aef5e4298.gif" />
+  </div>
+</details>
+
+<details> 
+  <summary> ✈️ 뉴스 페이지</summary>
+    <br/>
+  <div>
+    <p> ✅ 뉴스 </p>
+    <img src=" " />
+  </div>
+
+</details>
+
+<h2 id="6-프로젝트-사용법">6. 프로젝트 사용법 ⭐️</h2>
+
+<h2 id="6-프로젝트-사용법">6. 프로젝트 사용법 ⭐️</h2>
