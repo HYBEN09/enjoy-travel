@@ -122,75 +122,67 @@ _2023. 4. 18 ~ 05.10_
 
 <h2 id="5-페이지별-기능-소개">5. 페이지별 기능 소개 🚀</h2>
 
-<details>
-<summary>✈️ HOME 페이지</summary>
+<h3>✈️ HOME 페이지</h3>
 <br>
+<div style="display: flex; justify-content: space-around; margin-right:5px">
+<div>
 <p>✅ Weather 인풋창</p>
 <img src="https://user-images.githubusercontent.com/104710243/236993459-7d14e37b-9046-4f03-b49d-049ad175957c.gif" />
+</div>
 <br>
+<div>
 <p>✅ Popular Country 슬라이더</p>
 <img src="https://user-images.githubusercontent.com/104710243/236994809-4f4258e8-c308-45f5-93cb-f1765cef4ada.gif" />
+</div>
 <br>
+<div>
 <p>✅ Country 인풋창</p>
 <img src="https://user-images.githubusercontent.com/104710243/236994660-12d9a670-0bde-493e-851e-c686a9268dbc.gif" />
-</details>
+</div>
+</div>
 
-<details> 
-<summary> ✈️ 회원가입 페이지</summary>
-  <br/>
+<div style="display: flex; justify-content: space-between; ">
+<h3> ✈️ 회원가입 & 로그인 페이지</h3>
+  </div>
+<div  style="display: flex; justify-content: space-between; margin-right:5px">
 <div>
  <p> ✅ 이메일 회원가입 </p>
  <img src="https://user-images.githubusercontent.com/104710243/236995974-f1f8408a-1b48-46b4-9b9d-ac64f014f186.gif" />
 </div>
-  
-</details>
 
-<details> 
-  <summary> ✈️ 로그인 페이지</summary>
-    <br/>
   <div>
     <p> ✅ 이메일 로그인 </p>
     <img src="https://user-images.githubusercontent.com/104710243/236996339-317f04d7-9236-45b5-ab03-8c99530d742f.gif" />
   </div>
-</details>
+</div>
 
-<details> 
-  <summary> ✈️ 리뷰 페이지</summary>
+  <h3> ✈️ 리뷰 페이지 &  상세 후기 페이지</h3>
     <br/>
+  <div style="display: flex; justify-content: space-between; margin-right:5px">
   <div>
     <p> ✅ 리뷰 작성 </p>
     <img src="https://user-images.githubusercontent.com/104710243/236997042-b6739f88-4127-4eae-aa24-ccb349db62bb.gif" />
   </div>
 
-</details>
-
-<details> 
-  <summary> ✈️ 상세 후기 페이지</summary>
-    <br/>
   <div>
     <p> ✅ 상세 후기 </p>
     <img src="https://user-images.githubusercontent.com/104710243/236997581-b0d1e3da-78a9-472a-93b6-c53618655202.gif" />
   </div>
-</details>
+  </div>
 
-<details> 
-  <summary> ✈️ 좋아요 페이지 </summary>
+  <h3> ✈️ 좋아요 페이지 & 뉴스 페이지 </h3>
     <br/>
-  <div>
+<div style="display: flex; justify-content: space-between; margin-right:5px">
+  <div >
     <p> ✅ 좋아요 기능 </p>
     <img src="https://user-images.githubusercontent.com/104710243/236998050-947f45cb-f50e-4735-beed-f59aef5e4298.gif" />
   </div>
-</details>
 
-<details> 
-  <summary> ✈️ 뉴스 페이지</summary>
-    <br/>
   <div>
     <p> ✅ 뉴스 </p>
-    <img src=" " />
+    <img src="" />
   </div>
-
-</details>
+</div>
 
 <h2 id="6-프로젝트-사용법">6. 프로젝트 사용법 ⭐️</h2>
 
