@@ -4,6 +4,8 @@ export const NewsItemBlock = styled.div`
   display: flex;
   .thumbnail {
     margin-right: 1rem;
+    max-width: 130px;
+
     img {
       display: block;
       width: 30rem;
@@ -12,6 +14,7 @@ export const NewsItemBlock = styled.div`
     }
   }
   .contents {
+    max-width: 200px;
     h2 {
       margin: 0;
       a {
@@ -32,14 +35,10 @@ export const NewsItemBlock = styled.div`
 `;
 
 export const NewsListBlock = styled.div`
-  box-sizing: border-box;
   padding-bottom: 3rem;
-  width: 768px;
-  margin: 0 auto;
+  max-width: 360px;
   margin-top: 2rem;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+  width: 100%;
+  padding-left: 3px;
+  padding-right: 5px;
 `;

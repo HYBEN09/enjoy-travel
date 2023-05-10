@@ -6,15 +6,17 @@ export const NewsWrapper = styled.div`
   padding-left: 3px;
   padding-right: 5px;
   margin: 1rem 0 55px 8px;
-
-  @media (min-width: 780px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  max-width: 350px;
 
   h2 {
     font-size: 30px;
     color: var(--primary);
     margin-top: 1rem;
+    max-width: 200px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px; /* 스크롤바의 너비 */
   }
 `;
 
