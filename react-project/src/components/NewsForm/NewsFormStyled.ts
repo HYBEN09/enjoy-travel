@@ -23,11 +23,12 @@ export const NewsItemBlock = styled.div`
     }
   }
   p {
-    margin: 0;
-    line-height: 1.5;
-    margin-top: 0.5rem;
-    white-space: normal;
-    font-size: 12px;
+    max-width: 180px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   & + & {
     margin-top: 3rem;

@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 
 export const FooterWrapper = styled.div`
+  position: fixed;
   width: 100%;
   height: 80px;
   background: var(--blue-100);
   border-radius: 50px 50px 0 0;
   display: flex;
-  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  position: fixed;
   bottom: 0;
 `;
 
@@ -27,16 +26,8 @@ export const FooterButton = styled.button`
   &:hover {
     background-color: var(--blue-700);
   }
-`;
 
-export const Tooltip = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(90%);
-  background-color: #000;
-  color: #fff;
-  padding: 0.5rem;
-  border-radius: 4px;
-  z-index: 9999;
+  &:focus-visible {
+    outline: 3px solid var(--white);
+  }
 `;
