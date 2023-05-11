@@ -6,13 +6,13 @@ export const NewsWrapper = styled.div`
   padding-left: 3px;
   padding-right: 5px;
   margin: 1rem 0 55px 8px;
-  max-width: 350px;
+  max-width: 360px;
 
   h2 {
     font-size: 30px;
     color: var(--primary);
     margin-top: 1rem;
-    max-width: 200px;
+    max-width: 210px;
   }
 
   &::-webkit-scrollbar {

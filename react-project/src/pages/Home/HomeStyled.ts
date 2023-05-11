@@ -9,7 +9,7 @@ export const HomeSubTitle = styled.div`
 
 export const HomeWrapper = styled.div`
   margin: 1rem;
-  margin-bottom: 7rem;
+  margin-bottom: 6rem;
 `;
 
 export const InputWrapper = styled.div`
@@ -24,7 +24,7 @@ export const InputWrapper = styled.div`
 
   button {
     position: absolute;
-    right: 30px;
+    right: 28px;
     font-size: 24px;
   }
 `;
@@ -41,18 +41,15 @@ export const CountryInfoWrapper = styled.div`
 `;
 
 export const CountryCardWrapper = styled.div`
-  margin-top: 2rem;
-
-  h2 {
-    margin-top: 1rem;
-  }
+  margin-top: 1rem;
 `;
 
 export const CountryCard = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  height: 550px;
+  width: 100%;
+  height: 500px;
   overflow: hidden;
   padding: 2rem;
   display: flex;

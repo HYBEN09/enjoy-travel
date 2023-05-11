@@ -7,7 +7,7 @@ export const CommunityWrapper = styled.div`
   padding-right: 5px;
   margin: 1rem 0 55px 8px;
 
-  @media (min-width: 780px) {
+  @media (min-width: 460px) {
     grid-template-columns: repeat(2, 1fr);
   }
 

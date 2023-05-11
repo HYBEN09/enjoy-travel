@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
 import axios from 'axios';
 import { LoadingSpinner } from '@/styles/LoadingStyled';

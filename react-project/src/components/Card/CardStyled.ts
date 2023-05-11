@@ -11,7 +11,6 @@ export const CardWrapper = styled.div`
   transition: 0.3s;
   animation: ease-in-out;
   margin-bottom: 2rem;
-  margin-right: 10px;
   cursor: pointer;
 
   &:hover {
