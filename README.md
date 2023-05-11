@@ -204,3 +204,4 @@ _2023. 4. 18 ~ 05.10_
 <h2 id="6-프로젝트-사용법">6. 프로젝트 사용법 ⭐️</h2>
 
 <h2 id="7-피그마-시안">7. 피그마 시안 🌈</h2>
+https://www.figma.com/file/zFBOwImVJOHTgQk0nR0pvQ/%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?type=design&node-id=4%3A4&t=5XdcT6hFfPVlOQsn-1
