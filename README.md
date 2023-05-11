@@ -1,5 +1,9 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&&color=1d5bd6&height=300&section=header&text=Enjoy%20Travel&fontSize=90&fontColor=ffff" />
 
+
+## ⭐️ bitbucket활용
+https://bitbucket.org/sedohyeon/mini-project-react/src/main/
+
 ### 프로젝트 주제
 
 여행을 다녀온 사람들의 즐거웠던 경험을 공유하는 플랫폼 개발
