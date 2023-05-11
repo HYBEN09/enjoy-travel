@@ -3,7 +3,7 @@ import NewsItem from './NewsItem';
 import axios from 'axios';
 import { LoadingSpinner } from '@/styles/LoadingStyled';
 import loadingImg from '/public/assets/loading.svg';
-import { NewsListBlock } from './NewsFormStyled';
+import { NewsListBlock, NewsNoContent } from './NewsFormStyled';
 
 export default function NewsList() {
   const [articles, setArticles] = useState(null);
@@ -65,6 +65,9 @@ export default function NewsList() {
         <NewsItem key={article.url} article={article} />
       ))}
       {loading && <LoadingSpinner src={loadingImg} alt="로딩 중" />}
+      {!loading && articles === null && (
+        <NewsNoContent>기사가 들어오지 않았습니다.🥲</NewsNoContent>
+      )}
     </NewsListBlock>
   );
 }

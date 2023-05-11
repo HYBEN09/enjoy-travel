@@ -43,3 +43,12 @@ export const NewsListBlock = styled.div`
   padding-left: 3px;
   padding-right: 5px;
 `;
+
+export const NewsNoContent = styled.p`
+  font-weight: 600;
+  font-size: 26px;
+  margin-top: 1rem;
+  text-align: center;
+  line-height: 500px;
+  color: var(--secondary);
+`;
