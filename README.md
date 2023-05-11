@@ -180,9 +180,10 @@ _2023. 4. 18 ~ 05.10_
 
   <div>
     <p> ✅ 뉴스 </p>
-    <img src="" />
+    <img src="https://github.com/HYBEN09/enjoy-travel/assets/104710243/c4cf9bbe-eb65-4b7d-903e-342e9eee790f" />
   </div>
 </div>
+
 
 <h2 id="6-프로젝트-사용법">6. 프로젝트 사용법 ⭐️</h2>
 
