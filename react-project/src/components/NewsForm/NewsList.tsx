@@ -26,7 +26,9 @@ export default function NewsList() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${API_KEY}&page=${page}`
+        `${
+          import.meta.env.VITE_NEWS_API_URL
+        }/everything?q=bitcoin&apiKey=${API_KEY}&page=${page}`
       );
       setArticles(response.data.articles);
     } catch {

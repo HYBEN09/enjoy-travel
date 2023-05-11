@@ -37,6 +37,14 @@ export default defineConfig({
   server: {
     host: 'localhost',
     port: 3000,
+    proxy: {
+      // /api/news 경로로 오는 요청을 newsapi의 URL로 프록시합니다.
+      '/api/news': {
+        target: 'https://newsapi.org/v2',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/news/, ''),
+      },
+    },
   },
   css: {
     devSourcemap: true,
